@@ -49,7 +49,11 @@ class Event:
     # set of attributes, you can do that separately in the project1 folder. This class is part of
     # Exercise 1 and will be auto-graded.
 
-    # TODO: Add attributes below based on the provided descriptions above. Use the specified datatypes.
+    id_num: int
+    description: str
+    next_command: Optional[str] = None
+    next: Optional[Event] = None
+    prev: Optional[Event] = None
 
 
 class EventList:
@@ -57,10 +61,17 @@ class EventList:
     A linked list of game events.
 
     Instance Attributes:
-        - # TODO add descriptions of instance attributes here
+        - first: Event object representing the first event in the linked list, or None if the list is empty.
+        - last:  Event object representing the last event in the linked list,or None if the list is empty.
 
     Representation Invariants:
-        - # TODO add any appropriate representation invariants, if needed
+    - If the list is not empty, `first` and `last` must not be None.
+    - If the list is empty, both `first` and `last` must be None.
+    - All nodes in the list must form a valid doubly linked list:
+        - Each node's `next` and `prev` references must correctly point to the next and previous nodes.
+        - The `next` reference of the last node must be None.
+        - The `prev` reference of the first node must be None.
+
     """
     first: Optional[Event]
     last: Optional[Event]
@@ -78,12 +89,10 @@ class EventList:
             print(f"Location: {curr.id_num}, Command: {curr.next_command}")
             curr = curr.next
 
-    # TODO: Complete the methods below, based on the given descriptions. Do NOT change any of their specification.
-    #  That is, the function headers (parameters, return type, etc.) must NOT be changed.
     def is_empty(self) -> bool:
         """Return whether this event list is empty."""
 
-        # TODO: Your code below
+        return self.first is None
 
     def add_event(self, event: Event, command: Optional[str] = None) -> None:
         """Add the given new event to the end of this event list.
@@ -92,7 +101,13 @@ class EventList:
         """
         # Hint: You should update the previous node's <next_command> as needed
 
-        # TODO: Your code below
+        if self.is_empty():
+            self.first = self.last = event
+        else:
+            self.last.next_command = command
+            self.last.next = event
+            event.prev = self.last
+            self.last = event
 
     def remove_last_event(self) -> None:
         """Remove the last event from this event list.
@@ -100,23 +115,34 @@ class EventList:
 
         # Hint: The <next_command> and <next> attributes for the new last event should be updated as needed
 
-        # TODO: Your code below
+        if self.is_empty():
+            return
+        if self.first == self.last:  # Only one event
+            self.first = self.last = None
+        else:
+            self.last = self.last.prev
+            self.last.next = None
+            self.last.next_command = None
 
     def get_id_log(self) -> list[int]:
         """Return a list of all location IDs visited for each event in this list, in sequence."""
 
-        # TODO: Your code below
+        id_log = []
+        curr = self.first
+        while curr:
+            id_log.append(curr.id_num)
+            curr = curr.next
+        return id_log
 
     # Note: You may add other methods to this class as needed but DO NOT CHANGE THE SPECIFICATION OF ANY OF THE ABOVE
 
 
 if __name__ == "__main__":
-    pass
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })
