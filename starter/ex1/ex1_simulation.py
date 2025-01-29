@@ -96,7 +96,6 @@ class SimpleAdventureGame:
         If no ID is provided, return the Location object associated with the current location.
         """
 
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
         if loc_id is None:
             return self._locations[self.current_location_id]
         else:
@@ -122,13 +121,11 @@ class AdventureGameSimulation:
         self._events = EventList()
         self._game = SimpleAdventureGame(game_data_file, initial_location_id)
 
-        # TODO: Add first event (initial location, no previous command)
         # Hint: self._game.get_location() gives you back the current location
         current_location = self._game.get_location()
         first_event = Event(id_num=current_location.id_num, description=current_location.description, next_command=None)
         self._events.add_event(first_event)
 
-        # TODO: Generate the remaining events based on the commands and initial location
         self.generate_events(commands, current_location)
 
     def generate_events(self, commands: list[str], current_location: Location) -> None:
@@ -139,8 +136,6 @@ class AdventureGameSimulation:
         - all commands in the given list are valid commands at each associated location in the game
         """
 
-        # TODO: Complete this method as specified. For each command, generate the event and add
-        #  it to self._events.
         # Hint: current_location.available_commands[command] will return the next location ID
         # which executing <command> while in <current_location_id> leads to
         for command in commands:
@@ -185,12 +180,12 @@ class AdventureGameSimulation:
 
 
 if __name__ == "__main__":
-    pass
+    # pass
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })
