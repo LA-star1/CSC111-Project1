@@ -26,10 +26,20 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - # TODO Describe each instance attribute here
+        - id_num: The unique ID for the location.
+        - name: The name of the location.
+        - brief_description: A short description of the location.
+        - long_description: A detailed description of the location.
+        - available_commands: A dictionary mapping directions (e.g., "north", "south") to location IDs.
+        - items: A list of items currently present in the location.
+        - visited: Whether this location has been visited by the player.
 
     Representation Invariants:
-        - # TODO Describe any necessary representation invariants
+        - id_num > 0
+        - name is a non-empty string
+        - brief_description and long_description are non-empty strings
+        - available_commands.keys() contain only valid directions: "north", "south", "east", "west"
+
     """
 
     # This is just a suggested starter class for Location.
@@ -38,7 +48,7 @@ class Location:
     # The only thing you must NOT change is the name of this class: Location.
     # All locations in your game MUST be represented as an instance of this class.
 
-    def __init__(self, location_id, brief_description, long_description, available_commands, items,
+    def __init__(self, location_id, name, brief_description, long_description, available_commands, items,
                  visited=False) -> None:
         """Initialize a new location.
 
@@ -46,6 +56,7 @@ class Location:
         """
 
         self.id_num = location_id
+        self.name = name
         self.brief_description = brief_description
         self.long_description = long_description
         self.available_commands = available_commands
@@ -58,10 +69,16 @@ class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO Describe each instance attribute here
+        - name: The name of the item.
+        - description: A brief description of the item.
+        - start_position: The ID of the location where the item starts.
+        - target_position: The ID of the location where the item should be deposited.
+        - target_points: The number of points earned when the item is deposited correctly.
 
     Representation Invariants:
-        - # TODO Describe any necessary representation invariants
+        - start_position > 0
+        - target_position > 0
+        - target_points >= 0
     """
 
     # NOTES:
@@ -73,6 +90,7 @@ class Item:
     # All item objects in your game MUST be represented as an instance of this class.
 
     name: str
+    description: str
     start_position: int
     target_position: int
     target_points: int
@@ -88,8 +106,8 @@ if __name__ == "__main__":
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })

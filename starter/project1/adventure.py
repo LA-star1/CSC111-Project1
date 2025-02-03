@@ -21,6 +21,7 @@ from __future__ import annotations
 import json
 from typing import Optional
 
+from dataclasses import dataclass, field
 from game_entities import Location, Item
 from proj1_event_logger import Event, EventList
 
@@ -30,14 +31,51 @@ from proj1_event_logger import Event, EventList
 # Note: You may add helper functions, classes, etc. below as needed
 
 
+@dataclass
+class PlayerStatus:
+    """
+    Represents the status of a player in the text adventure game.
+
+    Attributes:
+        score (int): The current score of the player.
+        moves (int): The number of moves the player has made.
+        max_moves (int): The maximum allowed moves before the game is over.
+        inventory (set[str]): The set of items collected by the player.
+    """
+    score: int = 0
+    moves: int = 0
+    max_moves: int = 30
+    inventory: set[str] = field(default_factory=set)
+
+
+@dataclass
+class GameSettings:
+    """
+    Represents the game configuration settings.
+
+    Attributes:
+        required_items (set[str]): The set of item names required to win the game.
+        dorm_room_id (int): The location ID of the dorm room where required items must be returned.
+    """
+    required_items: set[str] = field(default_factory=lambda: {"USB drive", "laptop charger", "lucky UofT mug"})
+    dorm_room_id: int = 1
+
+
 class AdventureGame:
     """A text adventure game class storing all location, item and map data.
 
     Instance Attributes:
-        - # TODO add descriptions of public instance attributes as needed
+        - _locations (dict[int, Location]): Maps each unique location ID
+            to a Location object representing places in the game.
+        - _items (list[Item]): Contains all interactable items within the game.
+        - current_location_id (int): ID of the current location of the player, must be a valid key in _locations.
+        - ongoing (bool): Flag indicating whether the game is still active.
 
     Representation Invariants:
-        - # TODO add any appropriate representation invariants as needed
+         - All keys in _locations are unique and correspond to only one Location object each.
+        - current_location_id is always a valid key in the _locations dictionary.
+        - Items in _items list are placed correctly according to their game logic (if applicable).
+
     """
 
     # Private Instance Attributes (do NOT remove these two attributes):
@@ -49,6 +87,10 @@ class AdventureGame:
     _items: list[Item]
     current_location_id: int  # Suggested attribute, can be removed
     ongoing: bool  # Suggested attribute, can be removed
+
+    player_status: PlayerStatus
+    game_settings: GameSettings
+    game_log: EventList
 
     def __init__(self, game_data_file: str, initial_location_id: int) -> None:
         """
@@ -73,6 +115,11 @@ class AdventureGame:
         # Suggested attributes (you can remove and track these differently if you wish to do so):
         self.current_location_id = initial_location_id  # game begins at this location
         self.ongoing = True  # whether the game is ongoing
+        # 使用数据类封装玩家状态与游戏设定
+        self.player_status = PlayerStatus()  # 包含 score, moves, max_moves, inventory 等信息
+        self.game_settings = GameSettings()  # 包含 required_items, dorm_room_id 等信息
+
+        self.game_log = EventList()  # 事件日志
 
     @staticmethod
     def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item]]:
@@ -85,13 +132,21 @@ class AdventureGame:
 
         locations = {}
         for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
-            location_obj = Location(loc_data['id'], loc_data['brief_description'], loc_data['long_description'],
+            location_obj = Location(loc_data['id'], loc_data['name'], loc_data['brief_description'],
+                                    loc_data['long_description'],
                                     loc_data['available_commands'], loc_data['items'])
             locations[loc_data['id']] = location_obj
 
         items = []
-        # TODO: Add Item objects to the items list; your code should be structured similarly to the loop above
-        # YOUR CODE BELOW
+        for item_data in data['items']:
+            item_obj = Item(
+                item_data['name'],
+                item_data['description'],
+                item_data['start_position'],
+                item_data['target_position'],
+                item_data['target_points']
+            )
+            items.append(item_obj)
 
         return locations, items
 
@@ -99,9 +154,107 @@ class AdventureGame:
         """Return Location object associated with the provided location ID.
         If no ID is provided, return the Location object associated with the current location.
         """
+        if loc_id is None:
+            loc_id = self.current_location_id
 
-        # TODO: Complete this method as specified
-        # YOUR CODE BELOW
+        return self._locations[loc_id]
+
+    def move_player(self, direction: str) -> None:
+        """玩家移动到指定方向"""
+        curr_location = self.get_location()
+        print(f"You are now at: {curr_location.name}")
+
+        # 检查目标方向是否在当前地点的 `available_commands`
+        if direction in curr_location.available_commands:
+            new_location_id = curr_location.available_commands[direction]
+            self.current_location_id = new_location_id  # 更新位置
+            self.player_status.moves += 1   # 增加移动步数
+
+            # 记录事件日志
+            self.game_log.add_event(Event(new_location_id, f"Moved {direction} to {self.get_location().name}"))
+
+            print(f"You moved {direction}. Moves used: {self.player_status.moves}/{self.player_status.max_moves}")
+
+            # 检查是否赢/输
+            self.check_game_status()
+        else:
+            print("You can't go that way.")
+
+    def print_map(self) -> None:
+        """在报告中打印游戏地图"""
+        grid = [
+            [1, 2, -1],
+            [4, -1, -1]
+        ]
+
+        print("\nGame Map:")
+        for row in grid:
+            print(" ".join(str(cell) for cell in row))
+
+    def check_game_status(self) -> None:
+        """检查玩家是否赢得或输掉游戏"""
+
+        # 1️⃣ 检查是否超出最大步数（输）
+        if self.player_status.moves >= self.player_status.max_moves:
+            print("🕓 Time's up! It's 4 PM, and the project deadline has passed. You lost! 😢")
+            self.ongoing = False
+            return
+
+        # 2️⃣ 检查是否满足获胜条件（赢）
+        if (self.game_settings.required_items.issubset(self.player_status.inventory)
+                and self.current_location_id == self.game_settings.dorm_room_id):
+            print("🎉 Congratulations! You returned all required items before the deadline! You win! 🏆")
+            self.ongoing = False
+
+    def add_score(self, points: int) -> None:
+        """增加玩家分数"""
+        self.player_status.score += points
+        print(f"You earned {points} points! Current score: {self.player_status.score}")
+
+    def pick_up_item(self, item_name: str) -> None:
+        """Allow the player to pick up an item and update the score."""
+        curr_location = self.get_location()
+        print(f"You are now at: {curr_location.name}")
+
+        for item in self._items:
+            if item.name.lower() == item_name.lower() and item.start_position == curr_location.id_num:
+                if item_name in curr_location.items:
+                    curr_location.items.remove(item_name)  # 从当前地点移除物品
+                self.player_status.inventory.add(item_name)  # 添加到玩家库存
+                self.add_score(10)  # 拾取物品 +10 分
+                print(f"You picked up {item_name}. Your inventory: {', '.join(self.player_status.inventory)}")
+                self.check_game_status()
+                return
+
+        print(f"{item_name} is not at this location.")
+
+    def deposit_item(self, item_name: str) -> None:
+        """Allow the player to deposit an item at the correct location for points."""
+        if item_name not in self.player_status.inventory:
+            print(f"You don't have {item_name} in your inventory.")
+            return
+
+        curr_location = self.get_location()
+        print(f"You are now at: {curr_location.name}")
+
+        for item in self._items:
+            if item.name.lower() == item_name.lower() and item.target_position == curr_location.id_num:
+                self.player_status.inventory.remove(item_name)
+                self.add_score(item.target_points)
+                print(f"You deposited {item_name} at {curr_location.name}. Earned {item.target_points} points!")
+                self.check_game_status()
+                return
+
+        print(f"{item_name} cannot be deposited here.")
+
+    def show_score(self) -> None:
+        """Display the player's current score."""
+        print(f"Your current score is: {self.player_status.score}")
+
+    def quit_game(self) -> None:
+        """Handle quitting the game."""
+        print("Thank you for playing! Exiting the game now...")
+        self.ongoing = False
 
 
 if __name__ == "__main__":
@@ -118,7 +271,7 @@ if __name__ == "__main__":
     game_log = EventList()  # This is REQUIRED as one of the baseline requirements
     game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
     menu = ["look", "inventory", "score", "undo", "log", "quit"]  # Regular menu options available at each location
-    choice = None
+    choice = "start"
 
     # Note: You may modify the code below as needed; the following starter code is just a suggestion
     while game.ongoing:
@@ -127,13 +280,18 @@ if __name__ == "__main__":
 
         location = game.get_location()
 
-        # TODO: Add new Event to game log to represent current game location
-        #  Note that the <choice> variable should be the command which led to this event
-        # YOUR CODE HERE
+        if choice is not None:
+            event_command = choice
+        else:
+            event_command = "start"
+        current_event = Event(id_num=location.id_num, description=location.long_description, next_command=event_command)
+        game_log.add_event(current_event)
 
-        # TODO: Depending on whether or not it's been visited before,
-        #  print either full description (first time visit) or brief description (every subsequent visit) of location
-        # YOUR CODE HERE
+        if location.visited:
+            print(location.brief_description)
+        else:
+            print(location.long_description)
+            location.visited = True
 
         # Display possible actions at this location
         print("What to do? Choose from: look, inventory, score, undo, log, quit")
@@ -147,20 +305,49 @@ if __name__ == "__main__":
             print("That was an invalid option; try again.")
             choice = input("\nEnter action: ").lower().strip()
 
+        if choice == "score":
+            game.show_score()
+        elif choice in menu:
+            # Handle other menu commands
+            pass
+        elif choice in location.available_commands:
+            # Handle movement or item commands
+            pass
+        else:
+            print("Invalid command. Try again.")
+        if choice == "look":
+            print(game.get_location().long_description)
+        elif choice == "inventory":
+            inv = game.player_status.inventory
+            print("Your inventory:", ", ".join(inv) if inv else "Empty")
+        elif choice == "undo":
+            game.game_log.undo_last_event()
+        elif choice == "quit":
+            game.quit_game()
+        elif choice == "log":
+            game.game_log.display_events()
+
         print("========")
         print("You decided to:", choice)
 
         if choice in menu:
-            # TODO: Handle each menu command as appropriate
             # Note: For the "undo" command, remember to manipulate the game_log event list to keep it up-to-date
             if choice == "log":
                 game_log.display_events()
+            elif choice == "quit":
+                print("Exiting game.")
+                game.ongoing = False
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
 
         else:
             # Handle non-menu actions
+            if choice in location.available_commands:
+                game.current_location_id = location.available_commands[choice]
+                print("Moving to:", game.get_location().name)
+            else:
+                print("Action not recognized.")
+
             result = location.available_commands[choice]
             game.current_location_id = result
 
-            # TODO: Add in code to deal with actions which do not change the location (e.g. taking or using an item)
-            # TODO: Add in code to deal with special locations (e.g. puzzles) as needed for your game
+        print("========")
