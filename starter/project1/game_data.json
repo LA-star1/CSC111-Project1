@@ -1,24 +1,278 @@
 {
   "locations": [
     {
-      "id": 1,
-      "name": "Bahen 1F",
-      "brief_description": "You are on the first floor of the Bahen Center. There are elevators to the West, and an exit from the building to St. George street to the East. You see something shiny on the ground -- looks like a toonie?",
-      "long_description": "You are on the first floor of the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet. Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West, and an exit from the building to St. George street to the East.",
-      "available_commands": {
-        "go south": 4,
-        "go east": 2
-      },
-      "items": ["toonie"]
-    }
-  ],
-  "items": [
+    "id": 1,
+    "name": "Residence",
+    "brief_description": "You are in front of your residence building. Queens Park is to the North.",
+    "long_description": "You stand in front of your residence building, a towering modern structure with large glass windows reflecting the city lights. The entrance has a set of automatic sliding doors, and students frequently come and go. To the North, you can see the greenery of Queens Park.",
+    "available_commands": {
+      "go north": 2
+    },
+    "items": null
+    },
     {
-      "name": "toonie",
-      "description": "There is a toonie on the ground. Someone must have dropped it.",
-      "start_position": 1,
-      "target_position": 4,
-      "target_points": 5
+      "id": 1101,
+      "name": "Lobby",
+      "brief_description": "You are at the lobby on the first floor of your residence. You can head to the Laundry Room to the West. The elevators are to the North, and the front desk is to the East. If you want to leave the building, head South.",
+      "long_description": "You are at the lobby on the first floor of your residence. It is surprisingly crowded with people rushing through the front door, some returning from lectures, others escaping from them. To the West is the Laundry Room, to the North are the elevators, and to the East is the front desk. The exit is to the South if you want to leave the building.",
+      "available_commands": {
+        "go west": 1104,
+        "go east": 1103,
+        "go north": 1102,
+        "go south": 5
+      },
+      "items": null
+    },
+    {
+      "id": 1102,
+      "name": "Elevator",
+      "brief_description": "You are at the elevator on the first floor. You can go up to the second floor or head back South to the Lobby.",
+      "long_description": "You are standing in front of the elevators on the first floor. The metallic doors reflect the bright ceiling lights, and you hear the occasional 'ding' as the elevator arrives at different floors. You can take the elevator up to the second floor or return South to the Lobby.",
+      "available_commands": {
+        "go south": 1101,
+        "go up": 1201
+      },
+      "items": null
+    },
+    {
+      "id": 1103,
+      "name": "Front Desk",
+      "brief_description": "You are at the front desk on the first floor. The Lobby is to the West.",
+      "long_description": "You are at the front desk where a receptionist sits behind a glass counter, helping residents with their inquiries. A large bulletin board nearby displays notices about lost items and upcoming dorm events. The Lobby is located to the West.",
+      "available_commands": {
+        "go west": 1101
+      },
+      "items": null
+    },
+    {
+      "id": 1104,
+      "name": "Laundry Room",
+      "brief_description": "You are in the Laundry Room on the first floor. The Lobby is to the East.",
+      "long_description": "You are in a small but functional Laundry Room filled with humming washing machines and dryers. The scent of detergent lingers in the air, and a few baskets of unattended laundry sit on top of a table. You can return to the Lobby by heading East.",
+      "available_commands": {
+        "go east": 1101
+      },
+      "items": null
+    },
+    {
+      "id": 1203,
+      "name": "Your Dorm",
+      "brief_description": "You are in your dorm on the second floor. The hallway is to the West. You see something on your bed—it looks like a phone.",
+      "long_description": "You are in your dorm on the second floor. The room is messy with books and notes scattered around as you prepare for midterms. Your bed is unmade, and the air smells faintly of coffee. The hallway is to the West.",
+      "available_commands": {
+        "go west": 1202
+      },
+      "items": ["phone"]
+    },
+    {
+      "id": 1202,
+      "name": "Hallway",
+      "brief_description": "You are in the hallway of the second floor. To the East is your dorm, and to the West is the Elevator.",
+      "long_description": "You are in a narrow, dimly lit hallway on the second floor. Doors line both sides of the corridor, leading to other dorm rooms. The sound of distant chatter and music seeps through the walls. Your dorm is to the East, and the Elevator is to the West.",
+      "available_commands": {
+        "go west": 1201,
+        "go east": 1203
+      },
+      "items": null
+    },
+    {
+      "id": 1201,
+      "name": "Elevator",
+      "brief_description": "You are at the elevator on the second floor. The hallway is to the East, and you can go down to the first floor.",
+      "long_description": "You are standing in front of the elevators on the second floor. The polished buttons reflect the dim lighting of the hallway. You can hear the mechanical hum of the elevator moving between floors. The hallway is to the East, and you can take the elevator down to the first floor.",
+      "available_commands": {
+        "go east": 1202,
+        "go down": 1102
+      },
+      "items": null
+    },
+
+    {
+    "id": 2,
+    "name": "Queens Park",
+    "brief_description": "You are in Queens Park. The Residence is to the South, Robarts Library to the North, Bahen Centre to the West, and Starbucks to the East.",
+    "long_description": "Queens Park is a peaceful oasis surrounded by towering trees and well-maintained pathways. Sunlight filters through the branches, casting dappled shadows on the benches and grassy areas. In the distance, the grand architecture of Robarts Library looms to the North, while the sleek and modern Bahen Centre for Information Technology stands to the West. To the East, you can see the inviting storefront of Starbucks. Your Residence is located to the South.",
+    "available_commands": {
+      "go west": 4,
+      "go east": 5,
+      "go north": 3,
+      "go south": 1
+    },
+    "items": null
+    },
+
+    {
+    "id": 3,
+    "name": "Robarts Library",
+    "brief_description": "You are in front of Robarts Library, a massive concrete structure. Queens Park is to the South.",
+    "long_description": "Robarts Library towers over you like a massive fortress of knowledge, its brutalist concrete architecture giving it an imposing presence. The geometric design makes it look like a giant, futuristic bunker. Large glass windows reveal rows upon rows of bookshelves inside. The entrance is flanked by students either studying or chatting before heading inside. To the South, you can return to the greenery of Queens Park.",
+    "available_commands": {
+      "go south": 2
+    },
+    "items": null
+    },
+
+    {
+    "id": 3101,
+    "name": "Robarts Lobby",
+    "brief_description": "You are in the lobby of Robarts Library. The Computer Lab is to the East, Robarts Common is to the West, and the First Floor Elevator is to the North. If you want to leave the building, head North",
+    "long_description": "The Robarts Lobby is a vast, open space with high ceilings and a sleek modern design. The polished tile floors reflect the warm lighting overhead. Large glass windows let in natural light, and students rush in and out, some carrying backpacks stuffed with books. A few seating areas with couches and tables provide a spot for quick meetings. To the East, you see the entrance to the Computer Lab, while to the West is Robarts Common, a bustling area filled with students. The elevators to the upper floors are located to the North.If you want to leave the building, head North",
+    "available_commands": {
+      "go east": 3102,
+      "go west": 3103,
+      "go north": 3104,
+      "south": 3
+    },
+    "items": null
+  },
+
+  {
+    "id": 3102,
+    "name": "Computer Lab",
+    "brief_description": "You are in the Computer Lab. The Robarts Lobby is to the West.",
+    "long_description": "The Computer Lab is a quiet, well-lit space filled with long rows of sleek black desktops. Students sit at ergonomic chairs, their eyes locked onto screens as they work on assignments and research papers. The soft hum of computers and the occasional clatter of keyboards fill the room. A whiteboard on one side of the room displays handwritten notes and reminders about upcoming software workshops. To the West, the glass doors lead back to the Robarts Lobby.",
+    "available_commands": {
+      "go west": 3101
+    },
+    "items": null
+  },
+
+  {
+    "id": 3103,
+    "name": "Robarts Common",
+    "brief_description": "You are in Robarts Common. The Robarts Lobby is to the East.",
+    "long_description": "Robarts Common is a vibrant and open space where students gather to study, chat, and take breaks between classes. The walls are lined with large bulletin boards filled with event flyers and academic posters. Round tables and cushioned chairs are scattered throughout the room, with a few students deeply engrossed in group discussions. Large windows let in a soft glow of natural light, making it a comfortable place to work. To the East, you can return to the Robarts Lobby.",
+    "available_commands": {
+      "go east": 3101
+    },
+    "items": null
+  },
+
+  {
+    "id": 3104,
+    "name": "Robarts First Floor Elevator",
+    "brief_description": "You are at the first-floor elevator. You can go up to the second floor or head South to the Robarts Lobby.",
+    "long_description": "The elevator area is a well-lit space with brushed metal doors that slide open with a soft chime. The floor is covered in dark carpeting, contrasting with the sleek white walls. A digital screen displays the current floor and elevator status. To the South, you can return to the bustling Robarts Lobby, or you can take the elevator up to the second floor.",
+    "available_commands": {
+      "go south": 3101,
+      "go up": 3204
+    },
+    "items": null
+  },
+
+  {
+    "id": 3201,
+    "name": "Robarts Second Floor Hallway",
+    "brief_description": "You are in the second-floor hallway of Robarts Library. The Study Lounge is to the East, the Cafeteria is to the West, and the Elevator is to the North.",
+    "long_description": "The second-floor hallway stretches before you with rows of doors leading to various study spaces and faculty offices. The soft carpet muffles the footsteps of students hurrying between rooms. Bright LED panels overhead cast a neutral glow. To the East, the doors lead to the Study Lounge, while to the West, you catch the scent of food wafting from the Cafeteria. The Elevator is located to the North.",
+    "available_commands": {
+      "go east": 3203,
+      "go west": 3202,
+      "go north": 3204
+    },
+    "items": null
+  },
+
+  {
+    "id": 3202,
+    "name": "Robarts Cafeteria",
+    "brief_description": "You are in the Robarts Cafeteria. The Hallway is to the East.",
+    "long_description": "The cafeteria is a lively space with long tables and food counters filled with a variety of options. A coffee station in the corner serves freshly brewed drinks, while a line of students waits at the sandwich counter. The sound of casual chatter and clinking trays fills the air. Large windows provide a view of the outside, making it a pleasant place to take a break. To the East, you can return to the hallway.",
+    "available_commands": {
+      "go east": 3201
+    },
+    "items": null
+  },
+
+  {
+    "id": 3203,
+    "name": "Robarts Study Lounge",
+    "brief_description": "You are in the Study Lounge. The Hallway is to the West.",
+    "long_description": "The Study Lounge is a serene space filled with plush armchairs and long study tables. The dim lighting and soundproof walls create the perfect atmosphere for deep concentration. A few students sit with open books, some typing away on laptops, while others scribble notes in notebooks. The scent of old books and fresh paper lingers in the air. To the West, you can head back to the hallway.",
+    "available_commands": {
+      "go west": 3201
+    },
+    "items": null
+  },
+
+  {
+    "id": 3204,
+    "name": "Robarts Second Floor Elevator",
+    "brief_description": "You are at the second-floor elevator. You can go up to the ninth floor or head down to the first floor.",
+    "long_description": "The second-floor elevator area is a sleek space with clean white walls and polished metal doors. A notice board nearby lists the library’s different sections on each floor. The call buttons glow softly under the overhead lights. You can take the elevator down to the first floor or up to the ninth floor.",
+    "available_commands": {
+      "go south": 3201,
+      "go up": 3905,
+      "go down": 3104
+    },
+    "items": null
+  },
+
+  {
+    "id": 3901,
+    "name": "Robarts Ninth Floor Hallway",
+    "brief_description": "You are in the ninth-floor hallway of Robarts Library. Study Rooms are to the South, the Arts and Science Collection is to the East, and the Math Collection is to the West.",
+    "long_description": "The ninth-floor hallway is lined with tall bookshelves and study carrels. The overhead lights cast a warm glow on the beige carpeting. The air is thick with the scent of old books and paper. The Study Rooms are located to the South, while the extensive Arts and Science Collection is to the East, and the Math Collection is to the West.",
+    "available_commands": {
+      "go north": 3905,
+      "go south": 3902,
+      "go east": 3903,
+      "go west": 3904
+    },
+    "items": null
+  },
+
+  {
+    "id": 3902,
+    "name": "Robarts Study Rooms",
+    "brief_description": "You are in the Study Rooms. The Hallway is to the North.",
+    "long_description": "The Study Rooms are lined with soundproof glass, giving students a quiet environment to work in. Each cubicle is equipped with a desk, lamp, and ergonomic chair. A few students are scattered throughout, some writing notes while others whisper in small study groups. To the North, you can return to the hallway.",
+    "available_commands": {
+      "go north": 3901
+    },
+    "items": null
+  },
+
+    {
+    "id": 4,
+    "name": "Bahen Centre for Information Technology",
+    "brief_description": "You are in front of the Bahen Centre. Queens Park is to the East.",
+    "long_description": "The Bahen Centre for Information Technology stands as a sleek, modern building with a combination of glass, steel, and concrete. Its large glass windows reveal a glimpse of students working on computers in brightly lit labs. The geometric design gives the building a futuristic and tech-focused vibe. A revolving door leads inside, where tech enthusiasts and programmers gather. To the East, you can return to the open greenery of Queens Park.",
+    "available_commands": {
+      "go east": 2
+    },
+    "items": null
+    },
+
+    {
+    "id": 5,
+    "name": "Starbucks",
+    "brief_description": "You are outside a Starbucks café. Queens Park is to the West.",
+    "long_description": "The Starbucks café in front of you is a warm and inviting space, its signature green logo glowing against the backdrop of the busy city street. The glass storefront allows you to see inside, where students and professionals sit at wooden tables with laptops and steaming cups of coffee. The rich aroma of espresso and pastries fills the air. The door swings open as people rush in for their caffeine fix. To the West, you can head back to the tranquility of Queens Park.",
+    "available_commands": {
+      "go west": 2
+    },
+    "items": null
     }
+
   ]
 }
+
+
+
+
+
+
+
+
+
+//  "items": [
+//    {
+//      "name": "toonie",
+//      "description": "There is a toonie on the ground. Someone must have dropped it.",
+//      "start_position": 1,
+//      "target_position": 4,
+//      "target_points": 5
+//    }
+//  ]
+//}
