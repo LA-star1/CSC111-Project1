@@ -24,8 +24,7 @@ from typing import Optional
 from dataclasses import dataclass, field
 from game_entities import Location, Item
 from proj1_event_logger import Event, EventList
-
-
+from dataclasses import asdict
 # Note: You may add in other import statements here as needed
 
 # Note: You may add helper functions, classes, etc. below as needed
@@ -44,9 +43,9 @@ class PlayerStatus:
     """
     score: int = 0
     moves: int = 0
-    max_moves: int = 30
+    max_moves: int = 70
     inventory: set[str] = field(default_factory=set)
-
+    inventory_capacity: int = 3
 
 @dataclass
 class GameSettings:
@@ -202,7 +201,7 @@ class AdventureGame:
 
         # 2️⃣ 检查是否满足获胜条件（赢）
         if (self.game_settings.required_items.issubset(self.player_status.inventory)
-                and self.current_location_id == self.game_settings.dorm_room_id):
+                and self.current_location_id == 1203):
             print("🎉 Congratulations! You returned all required items before the deadline! You win! 🏆")
             self.ongoing = False
 
@@ -212,21 +211,53 @@ class AdventureGame:
         print(f"You earned {points} points! Current score: {self.player_status.score}")
 
     def pick_up_item(self, item_name: str) -> None:
-        """Allow the player to pick up an item and update the score."""
-        curr_location = self.get_location()
-        print(f"You are now at: {curr_location.name}")
+            """Allow the player to pick up an item and update the score."""
+            curr_location = self.get_location()
+            print(f"You are now at: {curr_location.name}")
 
-        for item in self._items:
-            if item.name.lower() == item_name.lower() and item.start_position == curr_location.id_num:
-                if item_name in curr_location.items:
-                    curr_location.items.remove(item_name)  # 从当前地点移除物品
-                self.player_status.inventory.add(item_name)  # 添加到玩家库存
-                self.add_score(10)  # 拾取物品 +10 分
-                print(f"You picked up {item_name}. Your inventory: {', '.join(self.player_status.inventory)}")
-                self.check_game_status()
-                return
+            for item in self._items:
+                # 判断玩家输入的物品名称是否与当前物品匹配，并且该物品应出现在当前地点
+                if item.name.lower() == item_name.lower() and item.start_position == curr_location.id_num:
 
-        print(f"{item_name} is not at this location.")
+                    # 如果物品不是咖啡，并且玩家已经拥有该物品，则不允许重复拾取
+                    if item.name.lower() != "coffee" and item.name.lower() in self.player_status.inventory:
+                        print(f"You have already picked up {item_name}.")
+                        return
+
+                    # 对于非咖啡、非书包物品，检查库存容量
+                    if item.name.lower() != "backpack" and item.name.lower() != "coffee":
+                        if len(self.player_status.inventory) >= self.player_status.inventory_capacity:
+                            print("Your inventory is full! You cannot pick up more items.")
+                            return
+
+                    # 如果当前地点的物品列表中存在该物品，则移除它，确保物品不再重复出现在房间里
+                    if curr_location.items and item_name in curr_location.items:
+                        curr_location.items.remove(item_name)
+
+                    # 针对咖啡，执行特殊处理：直接消耗，不计入库存，而是增加移动步数和分数
+                    if item.name.lower() == "coffee":
+                        self.player_status.max_moves += 5  # 增加额外的移动步数
+                        self.add_score(5)  # 分数奖励
+                        print(
+                            f"You picked up and drank a coffee! Your max moves increased by 5 to {self.player_status.max_moves}.")
+                        self.check_game_status()
+                        return
+
+                    # 添加到玩家库存中
+                    self.player_status.inventory.add(item_name)
+                    self.add_score(10)  # 拾取物品奖励 +10 分
+                    print(f"You picked up {item_name}. Your inventory: {', '.join(self.player_status.inventory)}")
+
+                    # 如果拾取的是书包，则增加库存容量（例如增加 3 个槽）
+                    if item.name.lower() == "backpack":
+                        self.player_status.inventory_capacity += 3
+                        print(
+                            f"Your backpack increases your inventory capacity to {self.player_status.inventory_capacity} items.")
+
+                    self.check_game_status()
+                    return
+
+            print(f"{item_name} is not at this location.")
 
     def deposit_item(self, item_name: str) -> None:
         """Allow the player to deposit an item at the correct location for points."""
@@ -256,6 +287,35 @@ class AdventureGame:
         print("Thank you for playing! Exiting the game now...")
         self.ongoing = False
 
+    def enter_password(self) -> None:
+        """
+        如果玩家位于 Robarts Study Rooms（ID 3902），提示输入密码以解锁房间，
+        并将隐藏的电脑添加到该房间的物品列表中。
+        """
+        # 检查当前所在位置是否为 3902
+        if self.current_location_id != 3902:
+            print("There is no password-protected area here.")
+            return
+
+        # 提示玩家输入密码
+        password = input("Enter password to unlock the room: ").strip()
+        # 预设密码（你可以修改为你想要的密码）
+        correct_password = "openSesame"
+        if password == correct_password:
+            loc = self.get_location()
+            # 如果当前地点的 items 为空，则创建一个列表
+            if loc.items is None:
+                loc.items = []
+            # 如果电脑还未添加，则将 "computer" 添加到该地点的 items 中
+            if "computer" not in loc.items:
+                loc.items.append("computer")
+                print("The room is unlocked! The computer is now available.")
+            else:
+                print("The room is already unlocked.")
+        else:
+            print("Incorrect password!")
+
+
 
 if __name__ == "__main__":
 
@@ -269,8 +329,9 @@ if __name__ == "__main__":
     # })
 
     game_log = EventList()  # This is REQUIRED as one of the baseline requirements
-    game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
-    menu = ["look", "inventory", "score", "undo", "log", "quit"]  # Regular menu options available at each location
+    game = AdventureGame('game_data.json', 1203)  # load data, setting initial location ID to 1
+    menu = ["look", "inventory", "score", "undo", "log", "quit", "pick up", "drop", "unlock"]
+    # Regular menu options available at each location
     choice = "start"
 
     # Note: You may modify the code below as needed; the following starter code is just a suggestion
@@ -294,7 +355,7 @@ if __name__ == "__main__":
             location.visited = True
 
         # Display possible actions at this location
-        print("What to do? Choose from: look, inventory, score, undo, log, quit")
+        print("What to do? Choose from: look, inventory, score, undo, log, quit, pick up, drop, unlock")
         print("At this location, you can also:")
         for action in location.available_commands:
             print("-", action)
@@ -307,14 +368,6 @@ if __name__ == "__main__":
 
         if choice == "score":
             game.show_score()
-        elif choice in menu:
-            # Handle other menu commands
-            pass
-        elif choice in location.available_commands:
-            # Handle movement or item commands
-            pass
-        else:
-            print("Invalid command. Try again.")
         if choice == "look":
             print(game.get_location().long_description)
         elif choice == "inventory":
@@ -326,6 +379,20 @@ if __name__ == "__main__":
             game.quit_game()
         elif choice == "log":
             game.game_log.display_events()
+        elif choice == "pick up":
+            item_name = input("Which item do you want to pick up? ").lower().strip()
+            if item_name:
+                game.pick_up_item(item_name)
+            else:
+                print("No item specified.")
+        elif choice == "drop":
+            item_name = input("Which item do you want to drop? ").lower().strip()
+            if item_name:
+                game.deposit_item(item_name)
+            else:
+                print("No item specified.")
+        elif choice == "unlock":
+            game.enter_password()
 
         print("========")
         print("You decided to:", choice)
@@ -337,6 +404,28 @@ if __name__ == "__main__":
             elif choice == "quit":
                 print("Exiting game.")
                 game.ongoing = False
+            elif choice == "score":
+                game.show_score()
+            elif choice == "look":
+                print(game.get_location().long_description)
+            elif choice == "inventory":
+                inv = game.player_status.inventory
+                print("Your inventory:", ", ".join(inv) if inv else "Empty")
+            elif choice == "undo":
+                game.game_log.undo_last_event()
+            elif choice == "pick up":
+                item_name = input("Which item do you want to pick up? ").lower().strip()
+                if item_name:
+                    game.pick_up_item(item_name)
+                else:
+                    print("No item specified.")
+            elif choice == "drop":
+                item_name = input("Which item do you want to drop? ").lower().strip()
+                if item_name:
+                    game.deposit_item(item_name)
+                else:
+                    print("No item specified.")
+
             # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
 
         else:
@@ -351,3 +440,4 @@ if __name__ == "__main__":
             game.current_location_id = result
 
         print("========")
+        game.check_game_status()
