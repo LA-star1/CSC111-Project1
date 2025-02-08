@@ -44,7 +44,7 @@ class PlayerStatus:
     """
     score: int = 0
     moves: int = 0
-    max_moves: int = 4
+    max_moves: int = 60
     inventory: set[str] = field(default_factory=set)
     inventory_capacity: int = 3
 
@@ -57,7 +57,7 @@ class GameSettings:
         required_items (set[str]): The set of item names required to win the game.
         dorm_room_id (int): The location ID of the dorm room where required items must be returned.
     """
-    required_items: set[str] = field(default_factory=lambda: {"usb drive", "laptop", "t-card", "iphone"})
+    required_items: set[str] = field(default_factory=lambda: {"usb drive", "laptop", "t-card", "laptop charger"})
     dorm_room_id: int = 1203
 
 
@@ -241,7 +241,7 @@ class AdventureGame:
 
                 # 针对咖啡，执行特殊处理：直接消耗，不计入库存，而是增加移动步数和分数
                 if item.name.lower() == "coffee":
-                    self.player_status.max_moves += 5  # 增加额外的移动步数
+                    self.player_status.max_moves += 10  # 增加额外的移动步数
                     self.add_score(5)  # 分数奖励
                     print(
                         f"You picked up and drank a coffee! Your max moves increased by 5 to {self.player_status.max_moves}.")
@@ -279,7 +279,7 @@ class AdventureGame:
                 self.add_score(item.target_points)
                 print(f"You deposited {item_name} at {curr_location.name}. Earned {item.target_points} points!")
                 self.check_game_status()
-                if self.player_status.score >= 200:
+                if self.player_status.score >= 300:
                     print("Thanks for the trophy and red bull! the passcode for the safe in the computer lab is:\"csc is the best!\" ")
                 return
 
@@ -314,10 +314,10 @@ class AdventureGame:
                 # 如果当前地点的 items 为空，则创建一个列表
                 if loc.items is None:
                     loc.items = []
-                # 如果电脑还未添加，则将 "computer" 添加到该地点的 items 中
-                if "computer" not in loc.items:
-                    loc.items.append("computer")
-                    print("The room is unlocked! The computer is now available.")
+                # 如果电脑还未添加，则将 "laptop" 添加到该地点的 items 中
+                if "laptop" not in loc.items:
+                    loc.items.append("laptop")
+                    print("The room is unlocked! The laptop is now available.")
                 else:
                     print("The room is already unlocked.")
             else:
@@ -332,8 +332,8 @@ class AdventureGame:
                     loc.items = []
                 # 如果电脑还未添加，则将 "computer" 添加到该地点的 items 中
                 if "computer" not in loc.items:
-                    loc.items.append("USB drive")
-                    print("The room is unlocked! The usb driver is now available.")
+                    loc.items.append("usb drive")
+                    print("The room is unlocked! The usb drive is now available.")
                 else:
                     print("The room is already unlocked.")
             else:
