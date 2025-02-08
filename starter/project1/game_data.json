@@ -18,10 +18,10 @@
     "brief_description": "You are at the lobby on the first floor of your residence. You can head to the Laundry Room to the West. The elevators are to the North, and the front desk is to the East. If you want to leave the building, head South.",
     "long_description": "You are at the lobby on the first floor of your residence. It is surprisingly crowded with people rushing through the front door, some returning from lectures, others escaping from them. To the West is the Laundry Room, to the North are the elevators, and to the East is the front desk. The exit is to the South if you want to leave the building.",
     "available_commands": {
-      "go west": 1104,
-      "go east": 1103,
-      "go north": 1102,
-      "go south": 1
+      "go east": 1104,
+      "go west": 1103,
+      "go north": 1,
+      "go south": 1102
     },
     "items": null
   },
@@ -31,7 +31,7 @@
     "brief_description": "You are at the elevator on the first floor. You can go up to the second floor or head back South to the Lobby.",
     "long_description": "You are standing in front of the elevators on the first floor. The metallic doors reflect the bright ceiling lights, and you hear the occasional 'ding' as the elevator arrives at different floors. You can take the elevator up to the second floor or return South to the Lobby.",
     "available_commands": {
-      "go south": 1101,
+      "go north": 1101,
       "go up": 1201
     },
     "items": null
@@ -39,18 +39,18 @@
   {
     "id": 1103,
     "name": "Front Desk",
-    "brief_description": "You are at the front desk on the first floor. The Lobby is to the West.",
-    "long_description": "You are at the front desk where a receptionist sits behind a glass counter, helping residents with their inquiries. A large bulletin board nearby displays notices about lost items and upcoming dorm events. The Lobby is located to the West.",
+    "brief_description": "You are at the front desk on the first floor. The Lobby is to the West.\nYou can pick up the t-card if you haven't yet",
+    "long_description": "You are at the front desk where a receptionist sits behind a glass counter, helping residents with their inquiries. A large bulletin board nearby displays notices about lost items and upcoming dorm events. The Lobby is located to the West.\nYOU ASKED THE FRONT DESK IF THEY HAVE SEEN YOUR t-card AND SAY SAID YES!",
     "available_commands": {
       "go west": 1101
     },
-    "items": null
+    "items": ["t-card"]
   },
   {
     "id": 1203,
     "name": "Your Dorm",
-    "brief_description": "You are in your dorm on the second floor. The hallway is to the West. You see something on your table---it looks like a backpack.",
-    "long_description": "You are in your dorm on the second floor. The room is messy with books and notes scattered around as you prepare for midterms. Your bed is unmade, and the air smells faintly of coffee. The hallway is to the West. You see something on your table---it looks like a backpack.",
+    "brief_description": "You are in your dorm on the second floor. The hallway is to the West.\nyou can pick up the backpack if you haven't yet.",
+    "long_description": "You are in your dorm on the second floor. The room is messy with books and notes scattered around as you prepare for midterms. Your bed is unmade, and the air smells faintly of coffee. The hallway is to the West.\nYOU SEE SOMETHING ON YOUR TABLE---a backpack.",
     "available_commands": {
       "go west": 1202
     },
@@ -114,7 +114,7 @@
       "go east": 3102,
       "go west": 3103,
       "go north": 3104,
-      "south": 3
+      "go south": 3
     },
     "items": null
   },
@@ -131,8 +131,8 @@
   {
     "id": 3103,
     "name": "Robarts Common",
-    "brief_description": "You are in Robarts Common. The Robarts Lobby is to the East.",
-    "long_description": "Robarts Common is a vibrant and open space where students gather to study, chat, and take breaks between classes. The walls are lined with large bulletin boards filled with event flyers and academic posters. Round tables and cushioned chairs are scattered throughout the room, with a few students deeply engrossed in group discussions. Large windows let in a soft glow of natural light, making it a comfortable place to work. To the East, you can return to the Robarts Lobby.",
+    "brief_description": "You are in Robarts Common. The Robarts Lobby is to the East.\nJeff and your other friends are sitting there preparing for the final project. When you called out of his name again, he informed you, \"the password for the safe in the study room is 12345678\"",
+    "long_description": "Robarts Common is a vibrant and open space where students gather to study, chat, and take breaks between classes. The walls are lined with large bulletin boards filled with event flyers and academic posters. Round tables and cushioned chairs are scattered throughout the room, with a few students deeply engrossed in group discussions. Large windows let in a soft glow of natural light, making it a comfortable place to work. To the East, you can return to the Robarts Lobby.\nJeff and your other friends are sitting there preparing for the final project. When you called out of his name, he informed you, \"the password for the safe in the study room is 12345678\"",
     "available_commands": {
       "go east": 3101
     },
@@ -164,22 +164,22 @@
   {
     "id": 3202,
     "name": "Robarts Cafeteria",
-    "brief_description": "You are in the Robarts Cafeteria. The Hallway is to the East.",
-    "long_description": "The cafeteria is a lively space with long tables and food counters filled with a variety of options. A coffee station in the corner serves freshly brewed drinks, while a line of students waits at the sandwich counter. The sound of casual chatter and clinking trays fills the air. Large windows provide a view of the outside, making it a pleasant place to take a break. To the East, you can return to the hallway.",
+    "brief_description": "You are in the Robarts Cafeteria. The Hallway is to the East.\nYou can pick up the red bull if you haven't yet.",
+    "long_description": "The cafeteria is a lively space with long tables and food counters filled with a variety of options. A coffee station in the corner serves freshly brewed drinks, while a line of students waits at the sandwich counter. The sound of casual chatter and clinking trays fills the air. Large windows provide a view of the outside, making it a pleasant place to take a break. To the East, you can return to the hallway.\nYOU SEES A red bull IN THE CORNER OF THE CAFETERIA, IS IT POISONOUS?",
     "available_commands": {
       "go east": 3201
     },
-    "items": null
+    "items": ["red bull"]
   },
   {
     "id": 3203,
     "name": "Robarts Study Lounge",
-    "brief_description": "You are in the Study Lounge. The Hallway is to the West.",
-    "long_description": "The Study Lounge is a serene space filled with plush armchairs and long study tables. The dim lighting and soundproof walls create the perfect atmosphere for deep concentration. A few students sit with open books, some typing away on laptops, while others scribble notes in notebooks. The scent of old books and fresh paper lingers in the air. To the West, you can head back to the hallway.",
+    "brief_description": "You are in the Study Lounge. The Hallway is to the West.\nyou can pick up the laptop charger if you haven't yet.",
+    "long_description": "The Study Lounge is a serene space filled with plush armchairs and long study tables. The dim lighting and soundproof walls create the perfect atmosphere for deep concentration. A few students sit with open books, some typing away on laptops, while others scribble notes in notebooks. The scent of old books and fresh paper lingers in the air. To the West, you can head back to the hallway.\nON ONE OF THE TABLES LAYS---a laptop charger",
     "available_commands": {
       "go west": 3201
     },
-    "items": null
+    "items": ["laptop charger"]
   },
   {
     "id": 3204,
@@ -209,8 +209,8 @@
   {
     "id": 3902,
     "name": "Robarts Study Rooms",
-    "brief_description": "You are in the Study Rooms, where students sit in quiet cubicles. The Ninth Floor Hallway is to the North.",
-    "long_description": "The Study Rooms are a silent retreat for students deep in research. Individual cubicles are arranged in rows, each equipped with a small desk, an overhead lamp, and a power outlet. A few students sit hunched over books and laptops, some wearing noise-canceling headphones. The only sounds are the occasional rustling of papers and the clicking of keyboards. To the North, you can return to the Ninth Floor Hallway.",
+    "brief_description": "You are in the Study Rooms, where students sit in quiet cubicles. The Ninth Floor Hallway is to the North.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN ROBARTS WILL TELL YOU THE PASSWORD!",
+    "long_description": "The Study Rooms are a silent retreat for students deep in research. Individual cubicles are arranged in rows, each equipped with a small desk, an overhead lamp, and a power outlet. A few students sit hunched over books and laptops, some wearing noise-canceling headphones. The only sounds are the occasional rustling of papers and the clicking of keyboards. To the North, you can return to the Ninth Floor Hallway.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN ROBARTS WILL TELL YOU THE PASSWORD!",
     "available_commands": {
       "go north": 3901
     },
@@ -275,13 +275,13 @@
   },
   {
     "id": 4102,
-    "name": "CS Competition Awards",
-    "brief_description": "You are in the CS Competition Awards room. The First Floor Hallway is to the South.",
-    "long_description": "This room is dedicated to showcasing the achievements of computer science students. Glass cases line the walls, filled with shining trophies, medals, and plaques from various national and international programming competitions. The walls are adorned with framed certificates and photos of winning teams. A digital screen cycles through highlights of past victories. To the South, the hallway leads back to the main corridor.",
+    "name": "CS Competition Awards Room",
+    "brief_description": "You are in the CS Competition Awards room. The First Floor Hallway is to the South.\nYou can pick up the computer award if you haven't yet.",
+    "long_description": "This room is dedicated to showcasing the achievements of computer science students. Glass cases line the walls, filled with shining trophies, medals, and plaques from various national and international programming competitions. The walls are adorned with framed certificates and photos of winning teams. A digital screen cycles through highlights of past victories. To the South, the hallway leads back to the main corridor.\nA computer award IS LAYING ON THE OPEN CABINET AND THE MONITOR IS LOOKING IN THE OTHER DIRECTION! IT IS A GOOD CHANCE TO STEAL THE AWARD.",
     "available_commands": {
       "go south": 4101
     },
-    "items": null
+    "items": ["computer award"]
   },
   {
     "id": 4103,
@@ -318,8 +318,8 @@
   {
     "id": 4202,
     "name": "Bahen Study Circle",
-    "brief_description": "You are in the Study Circle. The Computer Lab is to the West, and the Hallway is to the North.",
-    "long_description": "The Study Circle is a semi-open study space with round tables, whiteboards, and small cubicles for group discussions. Students sit together, brainstorming ideas and working on assignments. The walls are lined with shelves filled with textbooks and academic journals. The room has a quiet but productive energy. To the West is the Computer Lab, while to the North, the hallway continues.",
+    "brief_description": "You are in the Study Circle, and Bob is still siting there. The Computer Lab is to the West, and the Hallway is to the North.\n\"WOW THAT WAS QUICK! DID YOU BRING WHAT I WANTED? PLEASE GIVE ME BOTH OF THE ITEMS!\"",
+    "long_description": "The Study Circle is a semi-open study space with round tables, whiteboards, and small cubicles for group discussions. Students sit together, brainstorming ideas and working on assignments. The walls are lined with shelves filled with textbooks and academic journals. The room has a quiet but productive energy. To the West is the Computer Lab, while to the North, the hallway continues.\nBob and your other friends are sitting there preparing for the final project. When you called out of his name, he informed you, \"I can give you the passcode of the safe in the computer lab if you bring me a trophy in the CS Competition Awards Room(BA) and a cup of red bull which you can get in RB's cafeteria.\"",
     "available_commands": {
       "go west": 4206,
       "go north": 4205
@@ -362,8 +362,8 @@
   {
     "id": 4206,
     "name": "Bahen Computer Lab",
-    "brief_description": "You are in the Computer Lab. The Study Circle is to the East.",
-    "long_description": "The Computer Lab is a high-tech space filled with rows of desktop computers running various coding environments. The sound of keyboards clicking fills the air as students work on programming assignments. Large monitors display lines of code, while a professor supervises a group debugging session. The room is brightly lit and has an air of intense concentration. To the East, the door leads back to the Study Circle.",
+    "brief_description": "You are in the Computer Lab. The Study Circle is to the East.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN Bahen Study Lounge WILL TELL YOU THE PASSCODE!",
+    "long_description": "The Computer Lab is a high-tech space filled with rows of desktop computers running various coding environments. The sound of keyboards clicking fills the air as students work on programming assignments. Large monitors display lines of code, while a professor supervises a group debugging session. The room is brightly lit and has an air of intense concentration. To the East, the door leads back to the Study Circle.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN Bahen Study Lounge WILL TELL YOU THE PASSCODE!",
     "available_commands": {
       "go east": 4202
     },
@@ -419,13 +419,13 @@
   {
     "id": 5104,
     "name": "Starbucks Pickup",
-    "brief_description": "You are at the Starbucks Pickup Counter. The Order Section is to the North, and the exit is to the West.",
-    "long_description": "The Pickup Counter is a busy area where baristas place freshly made drinks on a wooden counter. The scent of espresso and caramel lingers in the air. Customers stand nearby, listening for their names to be called. The Order Section is to the North, while the exit to the street is to the West.",
+    "brief_description": "You are at the Starbucks Pickup Counter. The Order Section is to the North, and the exit is to the West.\nyou can pick up the coffee if you haven't yet.",
+    "long_description": "The Pickup Counter is a busy area where baristas place freshly made drinks on a wooden counter. The scent of espresso and caramel lingers in the air. Customers stand nearby, listening for their names to be called. The Order Section is to the North, while the exit to the street is to the West.\nYOU SEE A CUP WITH YOUR NAME ON THE PICK UP AREA---a coffee.",
     "available_commands": {
       "go north": 5103,
       "go west": 5
     },
-    "items": null
+    "items": ["coffee"]
   },
   {
     "id": 5105,
@@ -440,19 +440,62 @@
   ],
 
   "items": [
-    {
-      "name": "backpack",
-      "description": "A sturdy backpack that increases your carrying capacity.",
-      "start_position": 1203,
-      "target_position": 1203,
-      "target_points": 0
-    },
-    {
-      "name": "coffee",
-      "description": "A hot cup of coffee that energizes you, increasing your allowed moves by 5.",
-      "start_position": 5101,
-      "target_position": 5101,
-      "target_points": 0
-    }
-  ]
+  {
+    "name": "backpack",
+    "description": "A sturdy backpack that increases your carrying capacity.",
+    "start_position": 1203,
+    "target_position": 1203,
+    "target_points": 0
+  },
+  {
+    "name": "coffee",
+    "description": "A hot cup of coffee that energizes you, increasing your allowed moves by 5.",
+    "start_position": 5104,
+    "target_position": 5104,
+    "target_points": 0
+  },
+  {
+    "name": "t-card",
+    "description": "A university t-card that grants you access to secure areas and essential services.\nOne of the four required_items to win the game.",
+    "start_position": 1103,
+    "target_position": 1203,
+    "target_points": 0
+  },
+  {
+  "name": "laptop charger",
+  "description": "A reliable laptop charger that ensures your device stays powered up, keeping you connected and ready to tackle any digital challenges along your journey.\nOne of the four required_items to win the game.",
+  "start_position": 3203,
+  "target_position": 1203,
+  "target_points": 0
+  },
+  {
+    "name": "computer",
+    "description": "A high-performance computer capable of deciphering complex puzzles and unlocking hidden data.\nOne of the four required_items to win the game.",
+    "start_position": 3902,
+    "target_position": 1203,
+    "target_points": 0
+  },
+  {
+    "name": "usb drive",
+    "description": "A compact USB drive filled with encrypted files and vital clues to aid your progress.\nOne of the four required_items to win the game.",
+    "start_position": 4206,
+    "target_position": 1203,
+    "target_points": 0
+  },
+  {
+    "name": "red bull",
+    "description": "A can of Red Bull that gives you a burst of energy, propelling you through challenges.",
+    "start_position": 3202,
+    "target_position": 4202,
+    "target_points": 100
+  },
+  {
+    "name": "computer award",
+    "description": "A prestigious computer award that you stole from the trophy room.",
+    "start_position": 4102,
+    "target_position": 4202,
+    "target_points": 100
+  }
+]
+
 }
