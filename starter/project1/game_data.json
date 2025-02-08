@@ -3,8 +3,8 @@
   {
     "id": 1,
     "name": "Residence",
-    "brief_description": "You are in front of your residence building. Queens Park is to the North and head to the South to enter your residence.",
-    "long_description": "You stand in front of your residence building, a towering modern structure with large glass windows reflecting the city lights. The entrance has a set of automatic sliding doors, and students frequently come and go. To the North, you can see the greenery of Queens Park. Head to the South to enter your residence.",
+    "brief_description": "You are in front of your residence building.\nQueens Park is to the North and head to the South to enter your residence.",
+    "long_description": "You stand in front of your residence building, a towering modern structure with large glass windows reflecting the city lights. The entrance has a set of automatic sliding doors, and students frequently come and go.\nTo the North, you can see the greenery of Queens Park. Head to the South to enter your residence.",
     "available_commands": {
       "go north": 2,
       "go south": 1101
@@ -15,8 +15,8 @@
   {
     "id": 1101,
     "name": "Lobby",
-    "brief_description": "You are at the lobby on the first floor of your residence. You can head to the Laundry Room to the West. The elevators are to the North, and the front desk is to the East. If you want to leave the building, head South.",
-    "long_description": "You are at the lobby on the first floor of your residence. It is surprisingly crowded with people rushing through the front door, some returning from lectures, others escaping from them. To the West is the Laundry Room, to the North are the elevators, and to the East is the front desk. The exit is to the South if you want to leave the building.",
+    "brief_description": "You are at the lobby on the first floor of your residence.\nThe elevators are to the North, and the front desk is to the East. If you want to leave the building, head South.",
+    "long_description": "You are at the lobby on the first floor of your residence. It is surprisingly crowded with people rushing through the front door, some returning from lectures, others escaping from them.\nTo the West is the Laundry Room, to the North are the elevators, and to the East is the front desk. The exit is to the South if you want to leave the building.",
     "available_commands": {
       "go east": 1104,
       "go west": 1103,
@@ -28,8 +28,8 @@
   {
     "id": 1102,
     "name": "Elevator",
-    "brief_description": "You are at the elevator on the first floor. You can go up to the second floor or head back South to the Lobby.",
-    "long_description": "You are standing in front of the elevators on the first floor. The metallic doors reflect the bright ceiling lights, and you hear the occasional 'ding' as the elevator arrives at different floors. You can take the elevator up to the second floor or return South to the Lobby.",
+    "brief_description": "You are at the elevator on the first floor.\nYou can go up to the second floor or head back South to the Lobby.",
+    "long_description": "You are standing in front of the elevators on the first floor. The metallic doors reflect the bright ceiling lights, and you hear the occasional 'ding' as the elevator arrives at different floors.\nYou can take the elevator up to the second floor or return South to the Lobby.",
     "available_commands": {
       "go north": 1101,
       "go up": 1201
@@ -39,8 +39,8 @@
   {
     "id": 1103,
     "name": "Front Desk",
-    "brief_description": "You are at the front desk on the first floor. The Lobby is to the West.\nYou can pick up the t-card if you haven't yet",
-    "long_description": "You are at the front desk where a receptionist sits behind a glass counter, helping residents with their inquiries. A large bulletin board nearby displays notices about lost items and upcoming dorm events. The Lobby is located to the West.\nYOU ASKED THE FRONT DESK IF THEY HAVE SEEN YOUR t-card AND SAY SAID YES!",
+    "brief_description": "You are at the front desk on the first floor.\nThe Lobby is to the West.\nYou can pick up the t-card if you haven't yet",
+    "long_description": "You are at the front desk where a receptionist sits behind a glass counter, helping residents with their inquiries. A large bulletin board nearby displays notices about lost items and upcoming dorm events.\nThe Lobby is located to the West.\nYOU ASKED THE FRONT DESK IF THEY HAVE SEEN YOUR t-card AND SAY SAID YES!",
     "available_commands": {
       "go west": 1101
     },
@@ -49,8 +49,8 @@
   {
     "id": 1203,
     "name": "Your Dorm",
-    "brief_description": "You are in your dorm on the second floor. The hallway is to the West.\nyou can pick up the backpack if you haven't yet.",
-    "long_description": "You are in your dorm on the second floor. The room is messy with books and notes scattered around as you prepare for midterms. Your bed is unmade, and the air smells faintly of coffee. The hallway is to the West.\nYOU SEE SOMETHING ON YOUR TABLE---a backpack.",
+    "brief_description": "You are in your dorm on the second floor.\nThe hallway is to the West.\nyou can pick up the backpack if you haven't yet.",
+    "long_description": "You are in your dorm on the second floor. The room is messy with books and notes scattered around as you prepare for midterms. Your bed is unmade, and the air smells faintly of coffee.\nThe hallway is to the West.\nYOU SEE SOMETHING ON YOUR TABLE---a backpack.",
     "available_commands": {
       "go west": 1202
     },
@@ -59,8 +59,8 @@
   {
     "id": 1202,
     "name": "Hallway",
-    "brief_description": "You are in the hallway of the second floor. To the East is your dorm, and to the West is the Elevator.",
-    "long_description": "You are in a narrow, dimly lit hallway on the second floor. Doors line both sides of the corridor, leading to other dorm rooms. The sound of distant chatter and music seeps through the walls. Your dorm is to the East, and the Elevator is to the West.",
+    "brief_description": "You are in the hallway of the second floor.\nTo the East is your dorm, and to the West is the Elevator.",
+    "long_description": "You are in a narrow, dimly lit hallway on the second floor. Doors line both sides of the corridor, leading to other dorm rooms. The sound of distant chatter and music seeps through the walls.\nYour dorm is to the East, and the Elevator is to the West.",
     "available_commands": {
       "go west": 1201,
       "go east": 1203
@@ -70,8 +70,8 @@
   {
     "id": 1201,
     "name": "Elevator",
-    "brief_description": "You are at the elevator on the second floor. The hallway is to the East, and you can go down to the first floor.",
-    "long_description": "You are standing in front of the elevators on the second floor. The polished buttons reflect the dim lighting of the hallway. You can hear the mechanical hum of the elevator moving between floors. The hallway is to the East, and you can take the elevator down to the first floor.",
+    "brief_description": "You are at the elevator on the second floor.\nThe hallway is to the East, and you can go down to the first floor.",
+    "long_description": "You are standing in front of the elevators on the second floor. The polished buttons reflect the dim lighting of the hallway. You can hear the mechanical hum of the elevator moving between floors.\nThe hallway is to the East, and you can take the elevator down to the first floor.",
     "available_commands": {
       "go east": 1202,
       "go down": 1102
@@ -82,8 +82,8 @@
   {
     "id": 2,
     "name": "Queens Park",
-    "brief_description": "You are in Queens Park. The Residence is to the South, Robarts Library to the North, Bahen Centre to the West, and Starbucks to the East.",
-    "long_description": "Queens Park is a peaceful oasis surrounded by towering trees and well-maintained pathways. Sunlight filters through the branches, casting dappled shadows on the benches and grassy areas. In the distance, the grand architecture of Robarts Library looms to the North, while the sleek and modern Bahen Centre for Information Technology stands to the West. To the East, you can see the inviting storefront of Starbucks. Your Residence is located to the South.",
+    "brief_description": "You are in Queens Park.\nThe Residence is to the South, Robarts Library to the North, Bahen Centre to the West, and Starbucks to the East.",
+    "long_description": "Queens Park is a peaceful oasis surrounded by towering trees and well-maintained pathways. Sunlight filters through the branches, casting dappled shadows on the benches and grassy areas.\nIn the distance, the grand architecture of Robarts Library looms to the North, while the sleek and modern Bahen Centre for Information Technology stands to the West. To the East, you can see the inviting storefront of Starbucks. Your Residence is located to the South.",
     "available_commands": {
       "go west": 4,
       "go east": 5,
@@ -96,8 +96,8 @@
   {
     "id": 3,
     "name": "Robarts Library",
-    "brief_description": "You are in front of Robarts Library, a massive concrete structure. Queens Park is to the South. Head to Robarts Lobby by going to the North.",
-    "long_description": "Robarts Library towers over you like a massive fortress of knowledge, its brutalist concrete architecture giving it an imposing presence. The geometric design makes it look like a giant, futuristic bunker. Large glass windows reveal rows upon rows of bookshelves inside. The entrance is flanked by students either studying or chatting before heading inside. To the South, you can return to the greenery of Queens Park. Head to Robarts Lobby by going to the North",
+    "brief_description": "You are in front of Robarts Library, a massive concrete structure.\nQueens Park is to the South. Head to Robarts Lobby by going to the North.",
+    "long_description": "Robarts Library towers over you like a massive fortress of knowledge, its brutalist concrete architecture giving it an imposing presence. The geometric design makes it look like a giant, futuristic bunker. Large glass windows reveal rows upon rows of bookshelves inside. The entrance is flanked by students either studying or chatting before heading inside.\nTo the South, you can return to the greenery of Queens Park. Head to Robarts Lobby by going to the North",
     "available_commands": {
       "go south": 2,
       "go north": 3101
@@ -108,8 +108,8 @@
   {
     "id": 3101,
     "name": "Robarts Lobby",
-    "brief_description": "You are in the lobby of Robarts Library. The Computer Lab is to the East, Robarts Common is to the West, and the First Floor Elevator is to the North. If you want to leave the building, head North",
-    "long_description": "The Robarts Lobby is a vast, open space with high ceilings and a sleek modern design. The polished tile floors reflect the warm lighting overhead. Large glass windows let in natural light, and students rush in and out, some carrying backpacks stuffed with books. A few seating areas with couches and tables provide a spot for quick meetings. To the East, you see the entrance to the Computer Lab, while to the West is Robarts Common, a bustling area filled with students. The elevators to the upper floors are located to the North.If you want to leave the building, head North",
+    "brief_description": "You are in the lobby of Robarts Library.\nThe Computer Lab is to the East, Robarts Common is to the West, and the First Floor Elevator is to the North. If you want to leave the building, head North",
+    "long_description": "The Robarts Lobby is a vast, open space with high ceilings and a sleek modern design. The polished tile floors reflect the warm lighting overhead. Large glass windows let in natural light, and students rush in and out, some carrying backpacks stuffed with books. A few seating areas with couches and tables provide a spot for quick meetings.\nTo the East, you see the entrance to the Computer Lab, while to the West is Robarts Common, a bustling area filled with students. The elevators to the upper floors are located to the North.If you want to leave the building, head North",
     "available_commands": {
       "go east": 3102,
       "go west": 3103,
@@ -121,8 +121,8 @@
   {
     "id": 3102,
     "name": "Computer Lab",
-    "brief_description": "You are in the Computer Lab. The Robarts Lobby is to the West.",
-    "long_description": "The Computer Lab is a quiet, well-lit space filled with long rows of sleek black desktops. Students sit at ergonomic chairs, their eyes locked onto screens as they work on assignments and research papers. The soft hum of computers and the occasional clatter of keyboards fill the room. A whiteboard on one side of the room displays handwritten notes and reminders about upcoming software workshops. To the West, the glass doors lead back to the Robarts Lobby.",
+    "brief_description": "You are in the Computer Lab.\nThe Robarts Lobby is to the West.",
+    "long_description": "The Computer Lab is a quiet, well-lit space filled with long rows of sleek black desktops. Students sit at ergonomic chairs, their eyes locked onto screens as they work on assignments and research papers. The soft hum of computers and the occasional clatter of keyboards fill the room. A whiteboard on one side of the room displays handwritten notes and reminders about upcoming software workshops.\nTo the West, the glass doors lead back to the Robarts Lobby.",
     "available_commands": {
       "go west": 3101
     },
@@ -131,8 +131,8 @@
   {
     "id": 3103,
     "name": "Robarts Common",
-    "brief_description": "You are in Robarts Common. The Robarts Lobby is to the East.\nJeff and your other friends are sitting there preparing for the final project. When you called out of his name again, he informed you, \"the password for the safe in the study room is 12345678\"",
-    "long_description": "Robarts Common is a vibrant and open space where students gather to study, chat, and take breaks between classes. The walls are lined with large bulletin boards filled with event flyers and academic posters. Round tables and cushioned chairs are scattered throughout the room, with a few students deeply engrossed in group discussions. Large windows let in a soft glow of natural light, making it a comfortable place to work. To the East, you can return to the Robarts Lobby.\nJeff and your other friends are sitting there preparing for the final project. When you called out of his name, he informed you, \"the password for the safe in the study room is 12345678\"",
+    "brief_description": "You are in Robarts Common.\nThe Robarts Lobby is to the East.\nJeff and your other friends are sitting there preparing for the final project. When you called out of his name again, he informed you, \"the password for the safe in the study room is 12345678\"",
+    "long_description": "Robarts Common is a vibrant and open space where students gather to study, chat, and take breaks between classes. The walls are lined with large bulletin boards filled with event flyers and academic posters. Round tables and cushioned chairs are scattered throughout the room, with a few students deeply engrossed in group discussions. Large windows let in a soft glow of natural light, making it a comfortable place to work.\nTo the East, you can return to the Robarts Lobby.\nJeff and your other friends are sitting there preparing for the final project. When you called out of his name, he informed you, \"the password for the safe in the study room is 12345678\"",
     "available_commands": {
       "go east": 3101
     },
@@ -141,8 +141,8 @@
   {
     "id": 3104,
     "name": "Robarts First Floor Elevator",
-    "brief_description": "You are at the first-floor elevator. You can go up to the second floor or head South to the Robarts Lobby.",
-    "long_description": "The elevator area is a well-lit space with brushed metal doors that slide open with a soft chime. The floor is covered in dark carpeting, contrasting with the sleek white walls. A digital screen displays the current floor and elevator status. To the South, you can return to the bustling Robarts Lobby, or you can take the elevator up to the second floor.",
+    "brief_description": "You are at the first-floor elevator.\nYou can go up to the second floor or head South to the Robarts Lobby.",
+    "long_description": "The elevator area is a well-lit space with brushed metal doors that slide open with a soft chime. The floor is covered in dark carpeting, contrasting with the sleek white walls. A digital screen displays the current floor and elevator status.\nTo the South, you can return to the bustling Robarts Lobby, or you can take the elevator up to the second floor.",
     "available_commands": {
       "go south": 3101,
       "go up": 3204
@@ -152,8 +152,8 @@
   {
     "id": 3201,
     "name": "Robarts Second Floor Hallway",
-    "brief_description": "You are in the second-floor hallway of Robarts Library. The Study Lounge is to the East, the Cafeteria is to the West, and the Elevator is to the North.",
-    "long_description": "The second-floor hallway stretches before you with rows of doors leading to various study spaces and faculty offices. The soft carpet muffles the footsteps of students hurrying between rooms. Bright LED panels overhead cast a neutral glow. To the East, the doors lead to the Study Lounge, while to the West, you catch the scent of food wafting from the Cafeteria. The Elevator is located to the North.",
+    "brief_description": "You are in the second-floor hallway of Robarts Library.\nThe Study Lounge is to the East, the Cafeteria is to the West, and the Elevator is to the North.",
+    "long_description": "The second-floor hallway stretches before you with rows of doors leading to various study spaces and faculty offices. The soft carpet muffles the footsteps of students hurrying between rooms. Bright LED panels overhead cast a neutral glow.\nTo the East, the doors lead to the Study Lounge, while to the West, you catch the scent of food wafting from the Cafeteria. The Elevator is located to the North.",
     "available_commands": {
       "go east": 3203,
       "go west": 3202,
@@ -164,8 +164,8 @@
   {
     "id": 3202,
     "name": "Robarts Cafeteria",
-    "brief_description": "You are in the Robarts Cafeteria. The Hallway is to the East.\nYou can pick up the red bull if you haven't yet.",
-    "long_description": "The cafeteria is a lively space with long tables and food counters filled with a variety of options. A coffee station in the corner serves freshly brewed drinks, while a line of students waits at the sandwich counter. The sound of casual chatter and clinking trays fills the air. Large windows provide a view of the outside, making it a pleasant place to take a break. To the East, you can return to the hallway.\nYOU SEES A red bull IN THE CORNER OF THE CAFETERIA, IS IT POISONOUS?",
+    "brief_description": "You are in the Robarts Cafeteria.\nThe Hallway is to the East.\nYou can pick up the red bull if you haven't yet.",
+    "long_description": "The cafeteria is a lively space with long tables and food counters filled with a variety of options. A coffee station in the corner serves freshly brewed drinks, while a line of students waits at the sandwich counter. The sound of casual chatter and clinking trays fills the air. Large windows provide a view of the outside, making it a pleasant place to take a break.\nTo the East, you can return to the hallway.\nYOU SEES A red bull IN THE CORNER OF THE CAFETERIA, IS IT POISONOUS?",
     "available_commands": {
       "go east": 3201
     },
@@ -174,8 +174,8 @@
   {
     "id": 3203,
     "name": "Robarts Study Lounge",
-    "brief_description": "You are in the Study Lounge. The Hallway is to the West.\nyou can pick up the laptop charger if you haven't yet.",
-    "long_description": "The Study Lounge is a serene space filled with plush armchairs and long study tables. The dim lighting and soundproof walls create the perfect atmosphere for deep concentration. A few students sit with open books, some typing away on laptops, while others scribble notes in notebooks. The scent of old books and fresh paper lingers in the air. To the West, you can head back to the hallway.\nON ONE OF THE TABLES LAYS---a laptop charger",
+    "brief_description": "You are in the Study Lounge.\nThe Hallway is to the West.\nyou can pick up the laptop charger if you haven't yet.",
+    "long_description": "The Study Lounge is a serene space filled with plush armchairs and long study tables. The dim lighting and soundproof walls create the perfect atmosphere for deep concentration. A few students sit with open books, some typing away on laptops, while others scribble notes in notebooks. The scent of old books and fresh paper lingers in the air.\nTo the West, you can head back to the hallway.\nON ONE OF THE TABLES LAYS---a laptop charger",
     "available_commands": {
       "go west": 3201
     },
@@ -184,8 +184,8 @@
   {
     "id": 3204,
     "name": "Robarts Second Floor Elevator",
-    "brief_description": "You are at the second-floor elevator. You can go up to the ninth floor or head down to the first floor.",
-    "long_description": "The second-floor elevator area is a sleek space with clean white walls and polished metal doors. A notice board nearby lists the library’s different sections on each floor. The call buttons glow softly under the overhead lights. You can take the elevator down to the first floor or up to the ninth floor.",
+    "brief_description": "You are at the second-floor elevator.\nYou can go up to the ninth floor or head down to the first floor.",
+    "long_description": "The second-floor elevator area is a sleek space with clean white walls and polished metal doors. A notice board nearby lists the library’s different sections on each floor. The call buttons glow softly under the overhead lights.\nYou can take the elevator down to the first floor or up to the ninth floor.",
     "available_commands": {
       "go south": 3201,
       "go up": 3905,
@@ -196,8 +196,8 @@
   {
     "id": 3901,
     "name": "Robarts Ninth Floor Hallway",
-    "brief_description": "You are in the ninth-floor hallway of Robarts Library. The Elevator is to the North, the Study Rooms are to the South, the Arts and Science Book Collection is to the East, and the Math Book Collection is to the West.",
-    "long_description": "The ninth-floor hallway is a quiet corridor lined with towering bookshelves and study carrels. The soft hum of fluorescent lighting fills the space, and the carpeted floor muffles the footsteps of students passing through. To the North, you see the elevator that connects to the lower floors. To the South, a door leads to the Study Rooms, where students work in focused silence. To the East, the Arts and Science Book Collection extends across several rows of shelves, and to the West, the Math Book Collection holds academic materials on advanced topics.",
+    "brief_description": "You are in the ninth-floor hallway of Robarts Library.\nThe Elevator is to the North, the Study Rooms are to the South, the Arts and Science Book Collection is to the East, and the Math Book Collection is to the West.",
+    "long_description": "The ninth-floor hallway is a quiet corridor lined with towering bookshelves and study carrels. The soft hum of fluorescent lighting fills the space, and the carpeted floor muffles the footsteps of students passing through.\nTo the North, you see the elevator that connects to the lower floors. To the South, a door leads to the Study Rooms, where students work in focused silence. To the East, the Arts and Science Book Collection extends across several rows of shelves, and to the West, the Math Book Collection holds academic materials on advanced topics.",
     "available_commands": {
       "go north": 3905,
       "go south": 3902,
@@ -209,8 +209,8 @@
   {
     "id": 3902,
     "name": "Robarts Study Rooms",
-    "brief_description": "You are in the Study Rooms, where students sit in quiet cubicles. The Ninth Floor Hallway is to the North.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN ROBARTS WILL TELL YOU THE PASSWORD!",
-    "long_description": "The Study Rooms are a silent retreat for students deep in research. Individual cubicles are arranged in rows, each equipped with a small desk, an overhead lamp, and a power outlet. A few students sit hunched over books and laptops, some wearing noise-canceling headphones. The only sounds are the occasional rustling of papers and the clicking of keyboards. To the North, you can return to the Ninth Floor Hallway.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN ROBARTS WILL TELL YOU THE PASSWORD!",
+    "brief_description": "You are in the Study Rooms, where students sit in quiet cubicles.\nThe Ninth Floor Hallway is to the North.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN ROBARTS WILL TELL YOU THE PASSWORD!",
+    "long_description": "The Study Rooms are a silent retreat for students deep in research. Individual cubicles are arranged in rows, each equipped with a small desk, an overhead lamp, and a power outlet. A few students sit hunched over books and laptops, some wearing noise-canceling headphones. The only sounds are the occasional rustling of papers and the clicking of keyboards.\nTo the North, you can return to the Ninth Floor Hallway.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN ROBARTS WILL TELL YOU THE PASSWORD!",
     "available_commands": {
       "go north": 3901
     },
@@ -219,8 +219,8 @@
   {
     "id": 3903,
     "name": "Robarts Arts and Science Book Collections Area",
-    "brief_description": "You are in the Arts and Science Book Collection area. The Ninth Floor Hallway is to the West.",
-    "long_description": "The Arts and Science Book Collection area is filled with rows of tall bookshelves, each labeled with subject categories ranging from history and philosophy to biology and chemistry. Dim overhead lights illuminate the aisles, and the scent of old books lingers in the air. Students occasionally browse the shelves, pulling out thick academic texts. To the West, the hallway leads back to the main corridor of the ninth floor.",
+    "brief_description": "You are in the Arts and Science Book Collection area.\nThe Ninth Floor Hallway is to the West.",
+    "long_description": "The Arts and Science Book Collection area is filled with rows of tall bookshelves, each labeled with subject categories ranging from history and philosophy to biology and chemistry. Dim overhead lights illuminate the aisles, and the scent of old books lingers in the air. Students occasionally browse the shelves, pulling out thick academic texts.\nTo the West, the hallway leads back to the main corridor of the ninth floor.",
     "available_commands": {
       "go west": 3901
     },
@@ -229,7 +229,7 @@
   {
     "id": 3904,
     "name": "Robarts Math Book Collections Area",
-    "brief_description": "You are in the Math Book Collection area. The Ninth Floor Hallway is to the East.",
+    "brief_description": "You are in the Math Book Collection area.\nThe Ninth Floor Hallway is to the East.",
     "long_description": "The Math Book Collection area is a quiet space lined with bookshelves that contain everything from introductory calculus to advanced number theory. A few tables are scattered around for students to sit and reference books. The walls are adorned with mathematical formulas and framed portraits of famous mathematicians. To the East, the hallway extends back to the main ninth-floor corridor.",
     "available_commands": {
       "go east": 3901
@@ -239,8 +239,8 @@
   {
     "id": 3905,
     "name": "Robarts Ninth Floor Elevator",
-    "brief_description": "You are at the ninth-floor elevator. The Hallway is to the South, and you can go down to the second floor.",
-    "long_description": "The elevator area is a quiet, dimly lit space with a row of metal doors leading to the building's lower levels. A digital screen displays the current floor, and the elevator button glows softly. The faint sound of distant footsteps echoes through the hallway. To the South, the hallway continues, leading to various study rooms and book collections. You can take the elevator down to the second floor from here.",
+    "brief_description": "You are at the ninth-floor elevator.\nThe Hallway is to the South, and you can go down to the second floor.",
+    "long_description": "The elevator area is a quiet, dimly lit space with a row of metal doors leading to the building's lower levels. A digital screen displays the current floor, and the elevator button glows softly. The faint sound of distant footsteps echoes through the hallway.\nTo the South, the hallway continues, leading to various study rooms and book collections. You can take the elevator down to the second floor from here.",
     "available_commands": {
       "go south": 3901,
       "go down": 3204
@@ -251,8 +251,8 @@
   {
     "id": 4,
     "name": "Bahen Centre for Information Technology",
-    "brief_description": "You are in front of the Bahen Centre. Queens Park is to the East. Bahen First Floor Hallway is to the West.",
-    "long_description": "The Bahen Centre for Information Technology stands as a sleek, modern building with a combination of glass, steel, and concrete. Its large glass windows reveal a glimpse of students working on computers in brightly lit labs. The geometric design gives the building a futuristic and tech-focused vibe. A revolving door leads inside, where tech enthusiasts and programmers gather. To the East, you can return to the open greenery of Queens Park. Bahen First Floor Hallway is to the West.",
+    "brief_description": "You are in front of the Bahen Centre.\nQueens Park is to the East. Bahen First Floor Hallway is to the West.",
+    "long_description": "The Bahen Centre for Information Technology stands as a sleek, modern building with a combination of glass, steel, and concrete. Its large glass windows reveal a glimpse of students working on computers in brightly lit labs. The geometric design gives the building a futuristic and tech-focused vibe. A revolving door leads inside, where tech enthusiasts and programmers gather.\nTo the East, you can return to the open greenery of Queens Park. Bahen First Floor Hallway is to the West.",
     "available_commands": {
       "go east": 2,
       "go west": 4101
@@ -263,8 +263,8 @@
   {
     "id": 4101,
     "name": "Bahen First Floor Hallway",
-    "brief_description": "You are in the first-floor hallway of the Bahen Centre. The CS Competition Awards room is to the North, the Washroom is to the South, and the Stairway is to the West. If you want to leave the building, head East",
-    "long_description": "The first-floor hallway of the Bahen Centre is lined with sleek white walls and bulletin boards filled with event posters and academic notices. The tiled floor reflects the bright overhead fluorescent lights, giving the hallway a modern and professional feel. The air is filled with the faint hum of students discussing their projects. To the North, a glass display showcases CS competition trophies. The Washroom entrance is to the South, and the Stairway leading to the upper floors is to the West. If you want to leave the building, head East",
+    "brief_description": "You are in the first-floor hallway of the Bahen Centre.\nThe CS Competition Awards room is to the North, the Washroom is to the South, and the Stairway is to the West. If you want to leave the building, head East",
+    "long_description": "The first-floor hallway of the Bahen Centre is lined with sleek white walls and bulletin boards filled with event posters and academic notices. The tiled floor reflects the bright overhead fluorescent lights, giving the hallway a modern and professional feel. The air is filled with the faint hum of students discussing their projects.\nTo the North, a glass display showcases CS competition trophies. The Washroom entrance is to the South, and the Stairway leading to the upper floors is to the West. If you want to leave the building, head East",
     "available_commands": {
       "go east": 4,
       "go west": 4103,
@@ -276,8 +276,8 @@
   {
     "id": 4102,
     "name": "CS Competition Awards Room",
-    "brief_description": "You are in the CS Competition Awards room. The First Floor Hallway is to the South.\nYou can pick up the computer award if you haven't yet.",
-    "long_description": "This room is dedicated to showcasing the achievements of computer science students. Glass cases line the walls, filled with shining trophies, medals, and plaques from various national and international programming competitions. The walls are adorned with framed certificates and photos of winning teams. A digital screen cycles through highlights of past victories. To the South, the hallway leads back to the main corridor.\nA computer award IS LAYING ON THE OPEN CABINET AND THE MONITOR IS LOOKING IN THE OTHER DIRECTION! IT IS A GOOD CHANCE TO STEAL THE AWARD.",
+    "brief_description": "You are in the CS Competition Awards room.\nThe First Floor Hallway is to the South.\nYou can pick up the computer award if you haven't yet.",
+    "long_description": "This room is dedicated to showcasing the achievements of computer science students. Glass cases line the walls, filled with shining trophies, medals, and plaques from various national and international programming competitions. The walls are adorned with framed certificates and photos of winning teams. A digital screen cycles through highlights of past victories.\nTo the South, the hallway leads back to the main corridor.\nA computer award IS LAYING ON THE OPEN CABINET AND THE MONITOR IS LOOKING IN THE OTHER DIRECTION! IT IS A GOOD CHANCE TO STEAL THE AWARD.",
     "available_commands": {
       "go south": 4101
     },
@@ -286,8 +286,8 @@
   {
     "id": 4103,
     "name": "Bahen First Floor Stairway",
-    "brief_description": "You are at the stairway leading to the second floor of the Bahen Centre. The Hallway is to the East.",
-    "long_description": "The stairway is a wide, open space with metallic railings and well-worn steps leading to the upper floors. A tall window at the side lets in natural light, giving the area a bright and airy feel. Students move up and down, some deep in conversation while others check their schedules on their phones. To the East, the hallway connects back to the main corridor of the first floor.",
+    "brief_description": "You are at the stairway leading to the second floor of the Bahen Centre.\nThe Hallway is to the East.",
+    "long_description": "The stairway is a wide, open space with metallic railings and well-worn steps leading to the upper floors. A tall window at the side lets in natural light, giving the area a bright and airy feel. Students move up and down, some deep in conversation while others check their schedules on their phones.\nTo the East, the hallway connects back to the main corridor of the first floor.",
     "available_commands": {
       "go east": 4101,
       "go up": 4201
@@ -297,8 +297,8 @@
   {
     "id": 4104,
     "name": "Bahen Washroom",
-    "brief_description": "You are in the washroom of the Bahen Centre. The First Floor Hallway is to the North.",
-    "long_description": "The washroom is a clean and well-maintained space with bright LED lighting and tiled walls. The sound of running water from the sinks mixes with the occasional hum of the automatic hand dryers. The stalls are neatly arranged, and the scent of disinfectant hangs in the air. To the North, the door leads back to the hallway.",
+    "brief_description": "You are in the washroom of the Bahen Centre.\nThe First Floor Hallway is to the North.",
+    "long_description": "The washroom is a clean and well-maintained space with bright LED lighting and tiled walls. The sound of running water from the sinks mixes with the occasional hum of the automatic hand dryers. The stalls are neatly arranged, and the scent of disinfectant hangs in the air.\nTo the North, the door leads back to the hallway.",
     "available_commands": {
       "go north": 4101
     },
@@ -307,8 +307,8 @@
   {
     "id": 4201,
     "name": "Bahen Second Floor Stairway",
-    "brief_description": "You are at the stairway leading down to the first floor and further into the second floor. The Hallway is to the West. Or you can go down to the first floor",
-    "long_description": "The second-floor stairway has a sleek modern design with sturdy metal railings and wide steps. A notice board on the wall displays directions to different rooms on this floor. The air is quiet except for the occasional sound of students making their way between floors. To the West, the hallway leads deeper into the second floor.",
+    "brief_description": "You are at the stairway leading down to the first floor and further into the second floor.\nThe Hallway is to the West. Or you can go down to the first floor",
+    "long_description": "The second-floor stairway has a sleek modern design with sturdy metal railings and wide steps. A notice board on the wall displays directions to different rooms on this floor. The air is quiet except for the occasional sound of students making their way between floors.\nTo the West, the hallway leads deeper into the second floor.",
     "available_commands": {
       "go down": 4103,
       "go west": 4205
@@ -318,8 +318,8 @@
   {
     "id": 4202,
     "name": "Bahen Study Circle",
-    "brief_description": "You are in the Study Circle, and Bob is still siting there. The Computer Lab is to the West, and the Hallway is to the North.\n\"WOW THAT WAS QUICK! DID YOU BRING WHAT I WANTED? PLEASE GIVE ME BOTH OF THE ITEMS!\"",
-    "long_description": "The Study Circle is a semi-open study space with round tables, whiteboards, and small cubicles for group discussions. Students sit together, brainstorming ideas and working on assignments. The walls are lined with shelves filled with textbooks and academic journals. The room has a quiet but productive energy. To the West is the Computer Lab, while to the North, the hallway continues.\nBob and your other friends are sitting there preparing for the final project. When you called out of his name, he informed you, \"I can give you the passcode of the safe in the computer lab if you bring me a trophy in the CS Competition Awards Room(BA) and a cup of red bull which you can get in RB's cafeteria.\"",
+    "brief_description": "You are in the Study Circle, and Bob is still siting there.\nThe Computer Lab is to the West, and the Hallway is to the North.\n\"WOW THAT WAS QUICK! DID YOU BRING WHAT I WANTED? PLEASE GIVE ME BOTH OF THE ITEMS!\"",
+    "long_description": "The Study Circle is a semi-open study space with round tables, whiteboards, and small cubicles for group discussions. Students sit together, brainstorming ideas and working on assignments. The walls are lined with shelves filled with textbooks and academic journals. The room has a quiet but productive energy.\nTo the West is the Computer Lab, while to the North, the hallway continues.\nBob and your other friends are sitting there preparing for the final project. When you called out of his name, he informed you, \"I can give you the passcode of the safe in the computer lab if you bring me a trophy in the CS Competition Awards Room(BA) and a cup of red bull which you can get in RB's cafeteria.\"",
     "available_commands": {
       "go west": 4206,
       "go north": 4205
@@ -329,8 +329,8 @@
   {
     "id": 4203,
     "name": "Bahen Classroom 2175",
-    "brief_description": "You are in Classroom 2175. Classroom 2185 is to the West, and the Hallway is to the South.",
-    "long_description": "Classroom 2175 is a modern lecture space with neatly arranged desks and a projector screen at the front. The professor's desk is stacked with notes and a laptop. Students sit attentively, taking notes as a quiet discussion takes place. A large whiteboard covers one side of the room, covered in mathematical equations and coding syntax. The room is well-lit and has a focused atmosphere. To the West, another classroom awaits, and the hallway extends to the South.",
+    "brief_description": "You are in Classroom 2175.\nClassroom 2185 is to the West, and the Hallway is to the South.",
+    "long_description": "Classroom 2175 is a modern lecture space with neatly arranged desks and a projector screen at the front. The professor's desk is stacked with notes and a laptop. Students sit attentively, taking notes as a quiet discussion takes place. A large whiteboard covers one side of the room, covered in mathematical equations and coding syntax. The room is well-lit and has a focused atmosphere.\nTo the West, another classroom awaits, and the hallway extends to the South.",
     "available_commands": {
       "go west": 4204,
       "go south": 4205
@@ -340,8 +340,8 @@
   {
     "id": 4204,
     "name": "Bahen Classroom 2185",
-    "brief_description": "You are in Classroom 2185. Classroom 2175 is to the East.",
-    "long_description": "Classroom 2185 is a tiered lecture hall with rows of cushioned seats that rise towards the back of the room. The professor’s podium is equipped with a microphone and projector, displaying slides on a large screen. The walls are lined with sound-absorbing panels, making the acoustics perfect for lectures. Some students type away on laptops, while others jot down notes on paper. To the East, you can return to Classroom 2175.",
+    "brief_description": "You are in Classroom 2185.\nClassroom 2175 is to the East.",
+    "long_description": "Classroom 2185 is a tiered lecture hall with rows of cushioned seats that rise towards the back of the room. The professor’s podium is equipped with a microphone and projector, displaying slides on a large screen. The walls are lined with sound-absorbing panels, making the acoustics perfect for lectures. Some students type away on laptops, while others jot down notes on paper.\nTo the East, you can return to Classroom 2175.",
     "available_commands": {
       "go east": 4203
     },
@@ -350,8 +350,8 @@
   {
     "id": 4205,
     "name": "Bahen Second Floor Hallway",
-    "brief_description": "You are in the second-floor hallway of the Bahen Centre. The Study Circle is to the South, Classroom 2175 is to the North, and the Stairway is to the East.",
-    "long_description": "The second-floor hallway is a long, well-lit corridor with doors leading to various classrooms and study spaces. Students walk by, discussing assignments or checking their schedules. The walls have digital screens displaying class times and important announcements. To the South is the Study Circle, while to the North is Classroom 2175. The stairway leading down is to the East.",
+    "brief_description": "You are in the second-floor hallway of the Bahen Centre.\nThe Study Circle is to the South, Classroom 2175 is to the North, and the Stairway is to the East.",
+    "long_description": "The second-floor hallway is a long, well-lit corridor with doors leading to various classrooms and study spaces. Students walk by, discussing assignments or checking their schedules. The walls have digital screens displaying class times and important announcements.\nTo the South is the Study Circle, while to the North is Classroom 2175. The stairway leading down is to the East.",
     "available_commands": {
       "go south": 4202,
       "go north": 4203,
@@ -362,8 +362,8 @@
   {
     "id": 4206,
     "name": "Bahen Computer Lab",
-    "brief_description": "You are in the Computer Lab. The Study Circle is to the East.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN Bahen Study Lounge WILL TELL YOU THE PASSCODE!",
-    "long_description": "The Computer Lab is a high-tech space filled with rows of desktop computers running various coding environments. The sound of keyboards clicking fills the air as students work on programming assignments. Large monitors display lines of code, while a professor supervises a group debugging session. The room is brightly lit and has an air of intense concentration. To the East, the door leads back to the Study Circle.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN Bahen Study Lounge WILL TELL YOU THE PASSCODE!",
+    "brief_description": "You are in the Computer Lab.\nThe Study Circle is to the East.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN Bahen Study Lounge WILL TELL YOU THE PASSCODE!",
+    "long_description": "The Computer Lab is a high-tech space filled with rows of desktop computers running various coding environments. The sound of keyboards clicking fills the air as students work on programming assignments. Large monitors display lines of code, while a professor supervises a group debugging session. The room is brightly lit and has an air of intense concentration.\nTo the East, the door leads back to the Study Circle.\nTHERE IS A SAFE IN THE ROOM, WHAT WILL BY INSIDE IT? YOUR FRIEND IN Bahen Study Lounge WILL TELL YOU THE PASSCODE!",
     "available_commands": {
       "go east": 4202
     },
@@ -373,8 +373,8 @@
   {
     "id": 5,
     "name": "Starbucks",
-    "brief_description": "You are outside a Starbucks café. Queens Park is to the West. Head east to enter Starbucks.",
-    "long_description": "The Starbucks café in front of you is a warm and inviting space, its signature green logo glowing against the backdrop of the busy city street. The glass storefront allows you to see inside, where students and professionals sit at wooden tables with laptops and steaming cups of coffee. The rich aroma of espresso and pastries fills the air. The door swings open as people rush in for their caffeine fix. To the West, you can head back to the tranquility of Queens Park. Head east to enter Starbucks.",
+    "brief_description": "You are outside a Starbucks café.\nQueens Park is to the West. Head east to enter Starbucks.",
+    "long_description": "The Starbucks café in front of you is a warm and inviting space, its signature green logo glowing against the backdrop of the busy city street. The glass storefront allows you to see inside, where students and professionals sit at wooden tables with laptops and steaming cups of coffee. The rich aroma of espresso and pastries fills the air. The door swings open as people rush in for their caffeine fix.\nTo the West, you can head back to the tranquility of Queens Park. Head east to enter Starbucks.",
     "available_commands": {
       "go west": 2,
       "go east": 5101
@@ -385,8 +385,8 @@
   {
     "id": 5101,
     "name": "Starbucks Waiting Area",
-    "brief_description": "You are in the Starbucks Waiting Area. The Resting Tables are to the North, the Order Section is to the South, the Washroom is to the East, and the exit is to the West.",
-    "long_description": "The Starbucks Waiting Area is a cozy and bustling space with a warm ambiance. Customers stand around, chatting as they wait for their drinks, while the aroma of freshly brewed coffee fills the air. The walls are decorated with chalkboard menus showcasing seasonal beverages. To the North, the Resting Tables provide a place to relax. The Order Section is to the South, where baristas take orders. The Washroom is located to the East, and the exit to the street is to the West.",
+    "brief_description": "You are in the Starbucks Waiting Area.\nThe Resting Tables are to the North, the Order Section is to the South, the Washroom is to the East, and the exit is to the West.",
+    "long_description": "The Starbucks Waiting Area is a cozy and bustling space with a warm ambiance. Customers stand around, chatting as they wait for their drinks, while the aroma of freshly brewed coffee fills the air. The walls are decorated with chalkboard menus showcasing seasonal beverages.\nTo the North, the Resting Tables provide a place to relax. The Order Section is to the South, where baristas take orders. The Washroom is located to the East, and the exit to the street is to the West.",
     "available_commands": {
       "go north": 5105,
       "go south": 5103,
@@ -398,8 +398,8 @@
   {
     "id": 5102,
     "name": "Starbucks Washroom",
-    "brief_description": "You are in the Starbucks Washroom. The Waiting Area is to the West.",
-    "long_description": "The Starbucks Washroom is a small but well-maintained space with bright lighting and modern fixtures. The scent of hand soap lingers in the air, and the quiet hum of an air dryer can be heard in the background. A mirror spans the length of the sink counter, reflecting the warm lighting. To the West, the door leads back to the Waiting Area.",
+    "brief_description": "You are in the Starbucks Washroom.\nThe Waiting Area is to the West.",
+    "long_description": "The Starbucks Washroom is a small but well-maintained space with bright lighting and modern fixtures. The scent of hand soap lingers in the air, and the quiet hum of an air dryer can be heard in the background. A mirror spans the length of the sink counter, reflecting the warm lighting.\nTo the West, the door leads back to the Waiting Area.",
     "available_commands": {
       "go west": 5101
     },
@@ -408,8 +408,8 @@
   {
     "id": 5103,
     "name": "Starbucks Order Section",
-    "brief_description": "You are at the Starbucks Order Section. The Waiting Area is to the North, and the Pickup Counter is to the South.",
-    "long_description": "The Order Section is lively, with baristas in green aprons calling out names and taking orders. Customers line up at the register, glancing at the pastry case filled with croissants, muffins, and cookies. A digital menu board overhead displays a variety of beverages. The Waiting Area is located to the North, and to the South, the Pickup Counter awaits those collecting their drinks.",
+    "brief_description": "You are at the Starbucks Order Section.\nThe Waiting Area is to the North, and the Pickup Counter is to the South.",
+    "long_description": "The Order Section is lively, with baristas in green aprons calling out names and taking orders. Customers line up at the register, glancing at the pastry case filled with croissants, muffins, and cookies. A digital menu board overhead displays a variety of beverages.\nThe Waiting Area is located to the North, and to the South, the Pickup Counter awaits those collecting their drinks.",
     "available_commands": {
       "go north": 5101,
       "go south": 5104
@@ -419,8 +419,8 @@
   {
     "id": 5104,
     "name": "Starbucks Pickup",
-    "brief_description": "You are at the Starbucks Pickup Counter. The Order Section is to the North, and the exit is to the West.\nyou can pick up the coffee if you haven't yet.",
-    "long_description": "The Pickup Counter is a busy area where baristas place freshly made drinks on a wooden counter. The scent of espresso and caramel lingers in the air. Customers stand nearby, listening for their names to be called. The Order Section is to the North, while the exit to the street is to the West.\nYOU SEE A CUP WITH YOUR NAME ON THE PICK UP AREA---a coffee.",
+    "brief_description": "You are at the Starbucks Pickup Counter.\nThe Order Section is to the North, and the exit is to the West.\nyou can pick up the coffee if you haven't yet.",
+    "long_description": "The Pickup Counter is a busy area where baristas place freshly made drinks on a wooden counter. The scent of espresso and caramel lingers in the air. Customers stand nearby, listening for their names to be called.\nThe Order Section is to the North, while the exit to the street is to the West.\nYOU SEE A CUP WITH YOUR NAME ON THE PICK UP AREA---a coffee.",
     "available_commands": {
       "go north": 5103,
       "go west": 5
@@ -430,8 +430,8 @@
   {
     "id": 5105,
     "name": "Starbucks Resting Tables",
-    "brief_description": "You are in the Starbucks Resting Tables area. The Waiting Area is to the South.",
-    "long_description": "The Resting Tables area is a relaxed space with wooden tables and plush chairs. Some customers sit with laptops, while others enjoy their coffee in comfortable silence. A large window offers a view of the bustling street outside. To the South, the Waiting Area leads back to the main section of the café.",
+    "brief_description": "You are in the Starbucks Resting Tables area.\nThe Waiting Area is to the South.",
+    "long_description": "The Resting Tables area is a relaxed space with wooden tables and plush chairs. Some customers sit with laptops, while others enjoy their coffee in comfortable silence. A large window offers a view of the bustling street outside.\nTo the South, the Waiting Area leads back to the main section of the café.",
     "available_commands": {
       "go south": 5101
     },
@@ -469,8 +469,8 @@
   "target_points": 0
   },
   {
-    "name": "computer",
-    "description": "A high-performance computer capable of deciphering complex puzzles and unlocking hidden data.\nOne of the four required_items to win the game.",
+    "name": "laptop",
+    "description": "A high-performance laptop capable of deciphering complex puzzles and unlocking hidden data.\nOne of the four required_items to win the game.",
     "start_position": 3902,
     "target_position": 1203,
     "target_points": 0
@@ -487,14 +487,14 @@
     "description": "A can of Red Bull that gives you a burst of energy, propelling you through challenges.",
     "start_position": 3202,
     "target_position": 4202,
-    "target_points": 100
+    "target_points": 150
   },
   {
     "name": "computer award",
     "description": "A prestigious computer award that you stole from the trophy room.",
     "start_position": 4102,
     "target_position": 4202,
-    "target_points": 100
+    "target_points": 150
   }
 ]
 
