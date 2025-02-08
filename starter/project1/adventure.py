@@ -1,3 +1,4 @@
+
 """CSC111 Project 1: Text Adventure Game - Game Manager
 
 Instructions (READ THIS FIRST!)
@@ -24,7 +25,7 @@ from typing import Optional
 from dataclasses import dataclass, field
 from game_entities import Location, Item
 from proj1_event_logger import Event, EventList
-from dataclasses import asdict
+# from dataclasses import asdict
 # Note: You may add in other import statements here as needed
 
 # Note: You may add helper functions, classes, etc. below as needed
@@ -43,7 +44,7 @@ class PlayerStatus:
     """
     score: int = 0
     moves: int = 0
-    max_moves: int = 70
+    max_moves: int = 4
     inventory: set[str] = field(default_factory=set)
     inventory_capacity: int = 3
 
@@ -56,8 +57,8 @@ class GameSettings:
         required_items (set[str]): The set of item names required to win the game.
         dorm_room_id (int): The location ID of the dorm room where required items must be returned.
     """
-    required_items: set[str] = field(default_factory=lambda: {"USB drive", "laptop charger", "lucky UofT mug"})
-    dorm_room_id: int = 1
+    required_items: set[str] = field(default_factory=lambda: {"usb drive", "laptop", "t-card", "iphone"})
+    dorm_room_id: int = 1203
 
 
 class AdventureGame:
@@ -158,37 +159,37 @@ class AdventureGame:
 
         return self._locations[loc_id]
 
-    def move_player(self, direction: str) -> None:
-        """玩家移动到指定方向"""
-        curr_location = self.get_location()
-        print(f"You are now at: {curr_location.name}")
+    # def move_player(self, direction: str) -> None:
+    #     """玩家移动到指定方向"""
+    #     curr_location = self.get_location()
+    #     print(f"You are now at: {curr_location.name}")
+    #
+    #     # 检查目标方向是否在当前地点的 `available_commands`
+    #     if direction in curr_location.available_commands:
+    #         new_location_id = curr_location.available_commands[direction]
+    #         self.current_location_id = new_location_id  # 更新位置
+    #         self.player_status.moves += 1   # 增加移动步数
+    #
+    #         # 记录事件日志
+    #         self.game_log.add_event(Event(new_location_id, f"Moved {direction} to {self.get_location().name}"))
+    #
+    #         print(f"You moved {direction}. Moves used: {self.player_status.moves}/{self.player_status.max_moves}")
+    #
+    #         # 检查是否赢/输
+    #         self.check_game_status()
+    #     else:
+    #         print("You can't go that way.")
 
-        # 检查目标方向是否在当前地点的 `available_commands`
-        if direction in curr_location.available_commands:
-            new_location_id = curr_location.available_commands[direction]
-            self.current_location_id = new_location_id  # 更新位置
-            self.player_status.moves += 1   # 增加移动步数
-
-            # 记录事件日志
-            self.game_log.add_event(Event(new_location_id, f"Moved {direction} to {self.get_location().name}"))
-
-            print(f"You moved {direction}. Moves used: {self.player_status.moves}/{self.player_status.max_moves}")
-
-            # 检查是否赢/输
-            self.check_game_status()
-        else:
-            print("You can't go that way.")
-
-    def print_map(self) -> None:
-        """在报告中打印游戏地图"""
-        grid = [
-            [1, 2, -1],
-            [4, -1, -1]
-        ]
-
-        print("\nGame Map:")
-        for row in grid:
-            print(" ".join(str(cell) for cell in row))
+    # def print_map(self) -> None:
+    #     """在报告中打印游戏地图"""
+    #     grid = [
+    #         [1, 2, -1],
+    #         [4, -1, -1]
+    #     ]
+    #
+    #     print("\nGame Map:")
+    #     for row in grid:
+    #         print(" ".join(str(cell) for cell in row))
 
     def check_game_status(self) -> None:
         """检查玩家是否赢得或输掉游戏"""
@@ -200,7 +201,7 @@ class AdventureGame:
             return
 
         # 2️⃣ 检查是否满足获胜条件（赢）
-        if (self.game_settings.required_items.issubset(self.player_status.inventory)
+        elif (self.game_settings.required_items.issubset(self.player_status.inventory)
                 and self.current_location_id == 1203):
             print("🎉 Congratulations! You returned all required items before the deadline! You win! 🏆")
             self.ongoing = False
@@ -211,53 +212,57 @@ class AdventureGame:
         print(f"You earned {points} points! Current score: {self.player_status.score}")
 
     def pick_up_item(self, item_name: str) -> None:
-            """Allow the player to pick up an item and update the score."""
-            curr_location = self.get_location()
-            print(f"You are now at: {curr_location.name}")
+        """Allow the player to pick up an item and update the score."""
+        curr_location = self.get_location()
+        print(f"You are now at: {curr_location.name}")
 
-            for item in self._items:
-                # 判断玩家输入的物品名称是否与当前物品匹配，并且该物品应出现在当前地点
-                if item.name.lower() == item_name.lower() and item.start_position == curr_location.id_num:
+        if curr_location.items is None or not any(it.lower() == item_name.lower() for it in curr_location.items):
+            print(f"{item_name} is not at this location.")
+            return
 
-                    # 如果物品不是咖啡，并且玩家已经拥有该物品，则不允许重复拾取
-                    if item.name.lower() != "coffee" and item.name.lower() in self.player_status.inventory:
-                        print(f"You have already picked up {item_name}.")
+        for item in self._items:
+            # 判断玩家输入的物品名称是否与当前物品匹配，并且该物品应出现在当前地点
+            if item.name.lower() == item_name.lower() and item.start_position == curr_location.id_num:
+
+                # 如果物品不是咖啡，并且玩家已经拥有该物品，则不允许重复拾取
+                if item.name.lower() != "coffee" and item.name.lower() in self.player_status.inventory:
+                    print(f"You have already picked up {item_name}.")
+                    return
+
+                # 对于非咖啡、非书包物品，检查库存容量
+                if item.name.lower() != "backpack" and item.name.lower() != "coffee":
+                    if len(self.player_status.inventory) >= self.player_status.inventory_capacity:
+                        print("Your inventory is full! You cannot pick up more items.")
                         return
 
-                    # 对于非咖啡、非书包物品，检查库存容量
-                    if item.name.lower() != "backpack" and item.name.lower() != "coffee":
-                        if len(self.player_status.inventory) >= self.player_status.inventory_capacity:
-                            print("Your inventory is full! You cannot pick up more items.")
-                            return
+                # 如果当前地点的物品列表中存在该物品，则移除它，确保物品不再重复出现在房间里
+                if curr_location.items and item_name in curr_location.items:
+                    curr_location.items.remove(item_name)
 
-                    # 如果当前地点的物品列表中存在该物品，则移除它，确保物品不再重复出现在房间里
-                    if curr_location.items and item_name in curr_location.items:
-                        curr_location.items.remove(item_name)
-
-                    # 针对咖啡，执行特殊处理：直接消耗，不计入库存，而是增加移动步数和分数
-                    if item.name.lower() == "coffee":
-                        self.player_status.max_moves += 5  # 增加额外的移动步数
-                        self.add_score(5)  # 分数奖励
-                        print(
-                            f"You picked up and drank a coffee! Your max moves increased by 5 to {self.player_status.max_moves}.")
-                        self.check_game_status()
-                        return
-
-                    # 添加到玩家库存中
-                    self.player_status.inventory.add(item_name)
-                    self.add_score(10)  # 拾取物品奖励 +10 分
-                    print(f"You picked up {item_name}. Your inventory: {', '.join(self.player_status.inventory)}")
-
-                    # 如果拾取的是书包，则增加库存容量（例如增加 3 个槽）
-                    if item.name.lower() == "backpack":
-                        self.player_status.inventory_capacity += 3
-                        print(
-                            f"Your backpack increases your inventory capacity to {self.player_status.inventory_capacity} items.")
-
+                # 针对咖啡，执行特殊处理：直接消耗，不计入库存，而是增加移动步数和分数
+                if item.name.lower() == "coffee":
+                    self.player_status.max_moves += 5  # 增加额外的移动步数
+                    self.add_score(5)  # 分数奖励
+                    print(
+                        f"You picked up and drank a coffee! Your max moves increased by 5 to {self.player_status.max_moves}.")
                     self.check_game_status()
                     return
 
-            print(f"{item_name} is not at this location.")
+                # 添加到玩家库存中
+                self.player_status.inventory.add(item_name.lower())
+                self.add_score(10)  # 拾取物品奖励 +10 分
+                print(f"You picked up {item_name}. Your inventory: {', '.join(self.player_status.inventory)}")
+
+                # 如果拾取的是书包，则增加库存容量（例如增加 3 个槽）
+                if item.name.lower() == "backpack":
+                    self.player_status.inventory_capacity += 3
+                    print(
+                        f"Your backpack increases your inventory capacity to {self.player_status.inventory_capacity} items.")
+
+                self.check_game_status()
+                return
+
+        print(f"{item_name} is not at this location.")
 
     def deposit_item(self, item_name: str) -> None:
         """Allow the player to deposit an item at the correct location for points."""
@@ -274,6 +279,8 @@ class AdventureGame:
                 self.add_score(item.target_points)
                 print(f"You deposited {item_name} at {curr_location.name}. Earned {item.target_points} points!")
                 self.check_game_status()
+                if self.player_status.score >= 200:
+                    print("Thanks for the trophy and red bull! the passcode for the safe in the computer lab is:\"csc is the best!\" ")
                 return
 
         print(f"{item_name} cannot be deposited here.")
@@ -293,28 +300,44 @@ class AdventureGame:
         并将隐藏的电脑添加到该房间的物品列表中。
         """
         # 检查当前所在位置是否为 3902
-        if self.current_location_id != 3902:
+        if self.current_location_id != 3902 and self.current_location_id != 4206:
             print("There is no password-protected area here.")
             return
 
         # 提示玩家输入密码
         password = input("Enter password to unlock the room: ").strip()
         # 预设密码（你可以修改为你想要的密码）
-        correct_password = "openSesame"
-        if password == correct_password:
-            loc = self.get_location()
-            # 如果当前地点的 items 为空，则创建一个列表
-            if loc.items is None:
-                loc.items = []
-            # 如果电脑还未添加，则将 "computer" 添加到该地点的 items 中
-            if "computer" not in loc.items:
-                loc.items.append("computer")
-                print("The room is unlocked! The computer is now available.")
+        if self.current_location_id == 3902:
+            correct_password = "12345678"
+            if password == correct_password:
+                loc = self.get_location()
+                # 如果当前地点的 items 为空，则创建一个列表
+                if loc.items is None:
+                    loc.items = []
+                # 如果电脑还未添加，则将 "computer" 添加到该地点的 items 中
+                if "computer" not in loc.items:
+                    loc.items.append("computer")
+                    print("The room is unlocked! The computer is now available.")
+                else:
+                    print("The room is already unlocked.")
             else:
-                print("The room is already unlocked.")
-        else:
-            print("Incorrect password!")
+                print("Incorrect password!")
 
+        elif self.current_location_id == 4206:
+            correct_password = "csc is the best!"
+            if password == correct_password:
+                loc = self.get_location()
+                # 如果当前地点的 items 为空，则创建一个列表
+                if loc.items is None:
+                    loc.items = []
+                # 如果电脑还未添加，则将 "computer" 添加到该地点的 items 中
+                if "computer" not in loc.items:
+                    loc.items.append("USB drive")
+                    print("The room is unlocked! The usb driver is now available.")
+                else:
+                    print("The room is already unlocked.")
+            else:
+                print("Incorrect password!")
 
 
 if __name__ == "__main__":
@@ -366,39 +389,12 @@ if __name__ == "__main__":
             print("That was an invalid option; try again.")
             choice = input("\nEnter action: ").lower().strip()
 
-        if choice == "score":
-            game.show_score()
-        if choice == "look":
-            print(game.get_location().long_description)
-        elif choice == "inventory":
-            inv = game.player_status.inventory
-            print("Your inventory:", ", ".join(inv) if inv else "Empty")
-        elif choice == "undo":
-            game.game_log.undo_last_event()
-        elif choice == "quit":
-            game.quit_game()
-        elif choice == "log":
-            game.game_log.display_events()
-        elif choice == "pick up":
-            item_name = input("Which item do you want to pick up? ").lower().strip()
-            if item_name:
-                game.pick_up_item(item_name)
-            else:
-                print("No item specified.")
-        elif choice == "drop":
-            item_name = input("Which item do you want to drop? ").lower().strip()
-            if item_name:
-                game.deposit_item(item_name)
-            else:
-                print("No item specified.")
-        elif choice == "unlock":
-            game.enter_password()
-
         print("========")
         print("You decided to:", choice)
 
         if choice in menu:
             # Note: For the "undo" command, remember to manipulate the game_log event list to keep it up-to-date
+            # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
             if choice == "log":
                 game_log.display_events()
             elif choice == "quit":
@@ -425,13 +421,14 @@ if __name__ == "__main__":
                     game.deposit_item(item_name)
                 else:
                     print("No item specified.")
-
-            # ENTER YOUR CODE BELOW to handle other menu commands (remember to use helper functions as appropriate)
+            elif choice == "unlock":
+                game.enter_password()
 
         else:
             # Handle non-menu actions
             if choice in location.available_commands:
                 game.current_location_id = location.available_commands[choice]
+                game.player_status.moves += 1
                 print("Moving to:", game.get_location().name)
             else:
                 print("Action not recognized.")
