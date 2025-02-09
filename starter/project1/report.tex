@@ -22,9 +22,50 @@ Ensure that the file \texttt{game\_data.json} (containing all locations and item
 \section*{Game Map}
 The entire game is set on a university campus with several interconnected areas. The following grid summarizes the five main regions by their representative location IDs. Note that sub-locations (e.g., lobbies, elevators, classrooms) are embedded within these regions.
 \begin{verbatim}
-   1     2     3     4     5
-(Residence, Queens Park, Robarts Library, 
- Bahen Centre, Starbucks)
+The outer building map:
+ -1  3 -1
+  4  2  5
+ -1  1 -1
+P.S. 2 is the Queens Park
+----------------------
+in 1 (residence):
+  -1   1    -1
+ 1103 1101  -1
+  -1  1102  -1
+
+1102 goes up:
+ 1101 1102 1103
+-----------------------
+in 3 (Robarts library):
+ -1   3104  -1
+ 3103 3101 3102
+ -1    3    -1
+
+3104 goes up:
+  -1  3204  -1
+ 3102 3201 3103
+
+3203 goes up:
+  -1  3905  -1
+ 3904 3901 3903
+  -1  3903  -1
+-----------------------
+in 4 (Bahen Center):
+  -1  4102  -1
+ 4103 4101   4
+
+4103 goes up:
+ 4204 4203  -1
+  -1  4205 4201
+ 4206 4202  -1
+-----------------------
+in 5 (Starbucks):
+  -1  5105  -1
+   5  5101 5102
+  -1  5103  -1
+  -1  5104  -1
+-----------------------
+
 \end{verbatim}
 \textbf{Starting location:} \texttt{1203} (Your Dorm on the second floor). From here, players can traverse through the residence, visit campus landmarks, and eventually return to their dorm with all required items.
 
@@ -246,7 +287,7 @@ Once the player has collected all required items and returned to \texttt{1203} (
             \item \textbf{Puzzle 2 – Bahen Computer Lab:}  
             The unlocking mechanism in Bahen Computer Lab (location \texttt{4206}) is more complex. Initially, the passcode is unknown. The player must first collect two specific items: the \texttt{computer award} (obtained from the CS Competition Awards Room) and a can of \texttt{red bull} (from the Robarts Cafeteria). The player then needs to deposit both items in the Bahen Study Circle. Upon successful deposit, an NPC (Bob) reveals the passcode: \texttt{csc is the best!}. Later, when the player executes the \texttt{unlock} command at location \texttt{4206} and enters this passcode, the safe opens and the \texttt{usb drive} is made available.
         \end{enumerate}
-        \item \textbf{Complexity Level:} High.
+        \item \textbf{Complexity Level:} Medium.
         \item \textbf{Reasons:}  
         Implementing these puzzles required modifications to the baseline game flow:
         \begin{itemize}
