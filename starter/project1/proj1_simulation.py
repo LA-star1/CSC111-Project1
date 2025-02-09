@@ -46,7 +46,16 @@ class AdventureGameSimulation:
         self._game = AdventureGame(game_data_file, initial_location_id)
 
         current_location = self._game.get_location()
-        first_event = Event(id_num=current_location.id_num, description=current_location.description, next_command=None)
+        # 判断是否为首次访问，如果是则使用长描述，否则使用简要描述
+        if not current_location.visited:
+            description = current_location.long_description
+            current_location.visited = True
+        else:
+            description = current_location.brief_description
+
+        first_event = Event(id_num=current_location.id_num,
+                            description=description,
+                            next_command=None)
         self._events.add_event(first_event)
 
         self.generate_events(commands, current_location)
@@ -63,7 +72,14 @@ class AdventureGameSimulation:
             if command in current_location.available_commands:
                 next_location_id = current_location.available_commands[command]
                 next_location = self._game.get_location(next_location_id)
-                new_event = Event(id_num=next_location.id_num, description=next_location.description,
+                # 根据是否首次访问选择使用长描述或简要描述
+                if not next_location.visited:
+                    description = next_location.long_description
+                    next_location.visited = True
+                else:
+                    description = next_location.brief_description
+                new_event = Event(id_num=next_location.id_num,
+                                  description=description,
                                   next_command=command)
                 self._events.add_event(new_event, command)
                 current_location = next_location

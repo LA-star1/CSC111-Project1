@@ -48,6 +48,7 @@ class PlayerStatus:
     inventory: set[str] = field(default_factory=set)
     inventory_capacity: int = 3
 
+
 @dataclass
 class GameSettings:
     """
@@ -241,10 +242,11 @@ class AdventureGame:
 
                 # 针对咖啡，执行特殊处理：直接消耗，不计入库存，而是增加移动步数和分数
                 if item.name.lower() == "coffee":
-                    self.player_status.max_moves += 10  # 增加额外的移动步数
+                    self.player_status.max_moves += 20  # 增加额外的移动步数
                     self.add_score(5)  # 分数奖励
                     print(
-                        f"You picked up and drank a coffee! Your max moves increased by 5 to {self.player_status.max_moves}.")
+                        f"You picked up and drank a coffee! Your max moves increased by 5 "
+                        f"to {self.player_status.max_moves}.")
                     self.check_game_status()
                     return
 
@@ -257,7 +259,8 @@ class AdventureGame:
                 if item.name.lower() == "backpack":
                     self.player_status.inventory_capacity += 3
                     print(
-                        f"Your backpack increases your inventory capacity to {self.player_status.inventory_capacity} items.")
+                        f"Your backpack increases your inventory capacity "
+                        f"to {self.player_status.inventory_capacity} items.")
 
                 self.check_game_status()
                 return
@@ -280,7 +283,8 @@ class AdventureGame:
                 print(f"You deposited {item_name} at {curr_location.name}. Earned {item.target_points} points!")
                 self.check_game_status()
                 if self.player_status.score >= 300:
-                    print("Thanks for the trophy and red bull! the passcode for the safe in the computer lab is:\"csc is the best!\" ")
+                    print("Thanks for the trophy and red bull! the passcode for the safe in "
+                          "the computer lab is:\"csc is the best!\" ")
                 return
 
         print(f"{item_name} cannot be deposited here.")
