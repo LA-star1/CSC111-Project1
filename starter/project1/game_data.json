@@ -18,7 +18,6 @@
     "brief_description": "You are at the lobby on the first floor of your residence.\nThe elevators are to the North, and the front desk is to the East. If you want to leave the building, head South.",
     "long_description": "You are at the lobby on the first floor of your residence. It is surprisingly crowded with people rushing through the front door, some returning from lectures, others escaping from them.\nTo the West is the Laundry Room, to the North are the elevators, and to the East is the front desk. The exit is to the South if you want to leave the building.",
     "available_commands": {
-      "go east": 1104,
       "go west": 1103,
       "go north": 1,
       "go south": 1102
@@ -268,8 +267,7 @@
     "available_commands": {
       "go east": 4,
       "go west": 4103,
-      "go north": 4102,
-      "go south": 4204
+      "go north": 4102
     },
     "items": null
   },
@@ -291,16 +289,6 @@
     "available_commands": {
       "go east": 4101,
       "go up": 4201
-    },
-    "items": null
-  },
-  {
-    "id": 4104,
-    "name": "Bahen Washroom",
-    "brief_description": "You are in the washroom of the Bahen Centre.\nThe First Floor Hallway is to the North.",
-    "long_description": "The washroom is a clean and well-maintained space with bright LED lighting and tiled walls. The sound of running water from the sinks mixes with the occasional hum of the automatic hand dryers. The stalls are neatly arranged, and the scent of disinfectant hangs in the air.\nTo the North, the door leads back to the hallway.",
-    "available_commands": {
-      "go north": 4101
     },
     "items": null
   },
