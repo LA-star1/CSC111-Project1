@@ -22,64 +22,45 @@ Ensure that the file \texttt{game\_data.json} (containing all locations and item
 \section*{Game Map}
 The entire game is set on a university campus with several interconnected areas. The following grid summarizes the five main regions by their representative location IDs. Note that sub-locations (e.g., lobbies, elevators, classrooms) are embedded within these regions.
 \begin{verbatim}
-The outer building map:
- -1  3 -1
-  4  2  5
- -1  1 -1
-P.S. 2 is the Queens Park
-----------------------
-in 1 (residence):
-  -1   1    -1
- 1103 1101  -1
-  -1  1102  -1
-
-1102 goes up:
- 1201 1202 1203
------------------------
-in 3 (Robarts library):
- -1   3104  -1
- 3103 3101 3102
- -1    3    -1
-
-3104 goes up:
-  -1  3204  -1
- 3102 3201 3103
-
-3203 goes up:
-  -1  3905  -1
- 3904 3901 3903
-  -1  3903  -1
------------------------
-in 4 (Bahen Center):
-  -1  4102  -1
- 4103 4101   4
-
-4103 goes up:
- 4204 4203  -1
-  -1  4205 4201
- 4206 4202  -1
------------------------
-in 5 (Starbucks):
-  -1  5105  -1
-   5  5101 5102
-  -1  5103  -1
-  -1  5104  -1
------------------------
-
+                             -1  3905  -1
+                            3904 3901 3903
+                             -1  3902  -1
+                             ------------
+                             -1  3204  -1
+                            3102 3201 3103
+                             ------------
+                             -1  3104  -1
+                            3103 3101 3102
+ 4204 4203  -1  |  -1  4102  -1    3   -1  5105  -1
+  -1  4205 4201 | 4103 4101   4    2    5  5101 5102
+ 4206 4202  -1  |  -1   -1   -1    1   -1  5103  -1
+                            1103 1101  -1  5104  -1
+                             -1  1102  -1
+                             ------------
+                             -1  1201 1202 1203
+ P.S.
+ <-> means going up or down
+ 1102 <-> 1201
+ 3104 <-> 3204
+ 3204 <-> 3905
+ 4103 <-> 4201
+ The number "-1" is used to represent non-existent areas (which you cannot travel to)
 \end{verbatim}
+
 \textbf{Starting location:} \texttt{1203} (Your Dorm on the second floor). From here, players can traverse through the residence, visit campus landmarks, and eventually return to their dorm with all required items.
 
 \section*{Game solution}
 To win the game, the player must collect all four required items (t-card, laptop charger, laptop, and usb drive) and return to their dorm (location \texttt{1203}). Below is the chronological command sequence that achieves this goal:
 
 \begin{enumerate}
-    \item \texttt{pick up backpack} \quad (at 1203, Your Dorm; increases inventory capacity)
+    \item \texttt{pick up backpack}\quad (You need to type “pick up” first and wait for the system to ask you to type what you want to pick up)
+    \quad (at 1203, Your Dorm; increases inventory capacity)
     \item \texttt{go west} \quad (from 1203 to 1202, Hallway)
     \item \texttt{go west} \quad (from 1202 to 1201, Elevator on the second floor)
     \item \texttt{go down} \quad (from 1201 to 1102, Elevator on the first floor)
     \item \texttt{go north} \quad (from 1102 to 1101, Lobby)
     \item \texttt{go west} \quad (from 1101 to 1103, Front Desk)
-    \item \texttt{pick up t-card} \quad (at 1103, Front Desk)
+    \item \texttt{pick up t-card} \quad (You need to type “pick up” first and wait for the system to ask you to type what you want to pick up)\quad (at 1103, Front Desk)
     \item \texttt{go east} \quad (from 1103 to 1101, Lobby)
     \item \texttt{go north} \quad (from 1101 to 1, Residence)
     \item \texttt{go north} \quad (from 1 to 2, Queens Park)
@@ -94,7 +75,7 @@ To win the game, the player must collect all four required items (t-card, laptop
     \item \texttt{go down} \quad (from 4201 to 4103, Bahen First Floor Stairway)
     \item \texttt{go east} \quad (from 4103 to 4101, Bahen First Floor Hallway)
     \item \texttt{go north} \quad (from 4101 to CS Competition Awards Room)
-    \item \texttt{pick up computer award} 
+    \item \texttt{pick up computer award} \quad (You need to type “pick up” first and wait for the system to ask you to type what you want to pick up)
     \item \texttt{go south} \quad (from CS Competition Awards Room to Bahen First Floor Hallway)
     \item \texttt{go east} \quad (from Bahen First Floor Hallway to Bahen Centre)
     \item \texttt{go east} \quad (from Bahen Centre to Queens Park)
@@ -106,17 +87,17 @@ To win the game, the player must collect all four required items (t-card, laptop
     \item \texttt{go up} \quad (from First Floor Elevator to Second Floor Elevator)
     \item \texttt{go south} \quad (from Second Floor Elevator to Second Floor Hallway)
     \item \texttt{go west} \quad (from Second Floor Hallway to Cafeteria)
-    \item \texttt{pick up red bull} 
+    \item \texttt{pick up red bull} \quad (You need to type “pick up” first and wait for the system to ask you to type what you want to pick up)
     \item \texttt{go east} \quad (from Cafeteria to Second Floor Hallway)
     \item \texttt{go east} \quad (from Second Floor Hallway to Study Lounge)
-    \item \texttt{pick up laptop charger} \quad (at Study Lounge)
+    \item \texttt{pick up laptop charger}\quad (You need to type “pick up” first and wait for the system to ask you to type what you want to pick up) \quad (at Study Lounge)
     \item \texttt{go west} \quad (from Study Lounge to Second Floor Hallway)
     \item \texttt{go north} \quad (from Second Floor Hallway to Second Floor Elevator)
     \item \texttt{go up} \quad (from Second Floor Elevator to Ninth Floor Elevator)
     \item \texttt{go south} \quad (from Ninth Floor Elevator to Ninth Floor Hallway)
     \item \texttt{go south} \quad (from Ninth Floor Hallway to Study Rooms)
     \item \texttt{unlock safe} \quad (at Study Rooms; enter password \texttt{12345678} to unlock the safe)
-    \item \texttt{pick up laptop} \quad (after unlocking the safe)
+    \item \texttt{pick up laptop} \quad (You need to type “pick up” first and wait for the system to ask you to type what you want to pick up)\quad (after unlocking the safe)
     \item \texttt{go north} \quad (from Study Rooms to Ninth Floor Hallway)
     \item \texttt{go north} \quad (from Ninth Floor Hallway to Ninth Floor Elevator)
     \item \texttt{go down} \quad (from Ninth Floor Elevator to Second Floor Elevator)
@@ -130,11 +111,11 @@ To win the game, the player must collect all four required items (t-card, laptop
     \item \texttt{go up} \quad (from Bahen First Floor Stairway to Bahen Second Floor Stairway)
     \item \texttt{go west} \quad (from Bahen Second Floor Stairway to Bahen Second Floor Hallway)
     \item \texttt{go south} \quad (from Bahen Second Floor Hallway to Bahen Study Circle)
-    \item \texttt{drop red bull}
-    \item \texttt{drop computer award} \quad (Earned Passcode: "csc is the best!")
+    \item \texttt{drop red bull}\quad (You need to type “drop” first and wait for the system to ask you to type what you want to drop)
+    \item \texttt{drop computer award}\quad (You need to type “drop” first and wait for the system to ask you to type what you want to drop) \quad (Earned Passcode: "csc is the best!")
     \item \texttt{go west} \quad (from Bahen Study Circle to Bahen Computer Lab)
     \item \texttt{unlock safe} \quad (at Bahen Computer Lab; enter password \texttt{"csc is the best!"} to unlock the safe)
-    \item \texttt{pick up usb drive} \quad (at Bahen Computer Lab)
+    \item \texttt{pick up usb drive}\quad (You need to type “pick up” first and wait for the system to ask you to type what you want to pick up) \quad (at Bahen Computer Lab)
     \item \texttt{go east} \quad (from Bahen Computer Lab to Bahen Study Circle)
     \item \texttt{go north} \quad (from Bahen Study Circle to Bahen Second Floor Hallway)
     \item \texttt{go east} \quad (from Bahen Second Floor Hallway to Bahen Second Floor Stairway)
@@ -159,7 +140,7 @@ Once the player has collected all required items and returned to \texttt{1203} (
 \medskip
 \textbf{Example command sequence leading to a loss:}
 \begin{enumerate}
-    \item A player who repeatedly executes non-progressing commands such as \texttt{look} or unnecessary movements (e.g., alternating \texttt{go north} and \texttt{go south}) until 60 moves have been made.
+    \item A player who repeatedly executes non-progressing commands such as \texttt{look} or unnecessary movements (e.g., alternating \texttt{go north} and \texttt{go south}) until 70 moves have been made.
 \end{enumerate}
 
 \medskip
@@ -240,8 +221,8 @@ Once the player has collected all required items and returned to \texttt{1203} (
     
     \item \textbf{Commands:}
     \begin{itemize}
-        \item To pick up an item, use: \texttt{pick up <item name>} \quad (e.g., \texttt{pick up t-card})
-        \item To deposit (or drop) an item, use: \texttt{drop <item name>}
+        \item To pick up an item, use: \texttt{pick up} \quad (e.g., \texttt{pick up})
+        \item To deposit (or drop) an item, use: \texttt{drop}
     \end{itemize}
     
     \item \textbf{Code components involved:}
