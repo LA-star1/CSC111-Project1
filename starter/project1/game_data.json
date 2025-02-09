@@ -42,7 +42,7 @@
     "brief_description": "You are at the front desk on the first floor.\nThe Lobby is to the West.\nYou can pick up the t-card if you haven't yet",
     "long_description": "You are at the front desk where a receptionist sits behind a glass counter, helping residents with their inquiries. A large bulletin board nearby displays notices about lost items and upcoming dorm events.\nThe Lobby is located to the West.\nYOU ASKED THE FRONT DESK IF THEY HAVE SEEN YOUR t-card AND SAY SAID YES!",
     "available_commands": {
-      "go west": 1101
+      "go east": 1101
     },
     "items": ["t-card"]
   },
