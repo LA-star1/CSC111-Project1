@@ -133,9 +133,8 @@ class AdventureGame:
 
         locations = {}
         for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
-            location_obj = Location(loc_data['id'], loc_data['name'], loc_data['brief_description'],
-                                    loc_data['long_description'],
-                                    loc_data['available_commands'], loc_data['items'])
+            strl = [loc_data['id'], loc_data['name'], loc_data['brief_description'], loc_data['long_description'], ]
+            location_obj = Location(strl, loc_data['available_commands'], loc_data['items'])
             locations[loc_data['id']] = location_obj
 
         items = []
@@ -215,7 +214,7 @@ class AdventureGame:
     def pick_up_item(self, item_to_pick: str) -> None:
         """Allow the player to pick up an item and update the score."""
         curr_location = self.get_location()
-        print(f"You are now at: {curr_location.name}")
+        print(f"You are now at: {curr_location.get_name()}")
 
         if curr_location.items is None or not any(it.lower() == item_to_pick.lower() for it in curr_location.items):
             print(f"{item_to_pick} is not at this location.")
@@ -268,13 +267,13 @@ class AdventureGame:
             return
 
         curr_location = self.get_location()
-        print(f"You are now at: {curr_location.name}")
+        print(f"You are now at: {curr_location.get_name()}")
 
         for item in self._items:
             if item.name.lower() == item_to_deposit.lower() and item.target_position == curr_location.id_num:
                 self.player_status.inventory.remove(item_to_deposit)
                 self.add_score(item.target_points)
-                print(f"You deposited {item_to_deposit} at {curr_location.name}. Earned {item.target_points} points!")
+                print(f"You deposited {item_to_deposit} at {curr_location.get_name()}. Earned {item.target_points} points!")
                 self.check_game_status()
                 if self.player_status.score >= 300:
                     print(
@@ -428,7 +427,7 @@ if __name__ == "__main__":
             if choice in location.available_commands:
                 game.current_location_id = location.available_commands[choice]
                 game.player_status.moves += 1
-                print("Moving to:", game.get_location().name)
+                print("Moving to:", game.get_location().get_name())
             else:
                 print("Action not recognized.")
 
