@@ -124,27 +124,35 @@ class AdventureGame:
 
     @staticmethod
     def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item]]:
-        """Load locations and items from a JSON file with the given filename and
-        return a tuple consisting of (1) a dictionary of locations mapping each game location's ID to a Location object,
-        and (2) a list of all Item objects."""
+        """Load locations and items from a JSON file..."""
 
         with open(filename, 'r') as f:
-            data = json.load(f)  # This loads all the data from the JSON file
+            data = json.load(f)
 
         locations = {}
-        for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
-            strl = [loc_data['id'], loc_data['name'], loc_data['brief_description'], loc_data['long_description'], ]
-            location_obj = Location(strl, loc_data['available_commands'], loc_data['items'])
+        for loc_data in data['locations']:
+            # 处理每个位置的 'items' 字段（已修复）
+            location_obj = Location(
+                strl=[
+                    loc_data['id'],
+                    loc_data['name'],
+                    loc_data['brief_description'],
+                    loc_data['long_description']
+                ],
+                available_commands=loc_data.get('available_commands', {}),
+                items=loc_data.get('items', [])  # 防御性处理
+            )
             locations[loc_data['id']] = location_obj
 
+        # 修复点：处理顶层 'items' 字段缺失
         items = []
-        for item_data in data['items']:
+        for item_data in data.get('items', []):  # 使用 get() 提供默认值
             item_obj = Item(
-                item_data['name'],
-                item_data['description'],
-                item_data['start_position'],
-                item_data['target_position'],
-                item_data['target_points']
+                name=item_data['name'],
+                description=item_data['description'],
+                start_position=item_data['start_position'],
+                target_position=item_data['target_position'],
+                target_points=item_data['target_points']
             )
             items.append(item_obj)
 
@@ -273,7 +281,8 @@ class AdventureGame:
             if item.name.lower() == item_to_deposit.lower() and item.target_position == curr_location.id_num:
                 self.player_status.inventory.remove(item_to_deposit)
                 self.add_score(item.target_points)
-                print(f"You deposited {item_to_deposit} at {curr_location.get_name()}. Earned {item.target_points} points!")
+                print(f"You deposited {item_to_deposit} at {curr_location.get_name()}. "
+                      f"Earned {item.target_points} points!")
                 self.check_game_status()
                 if self.player_status.score >= 300:
                     print(
