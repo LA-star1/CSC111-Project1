@@ -29,7 +29,6 @@ class Location:
         - id_num: The unique ID for the location.
         - name: The name of the location.
         - brief_description: A short description of the location.
-        - long_description: A detailed description of the location.
         - available_commands: A dictionary mapping directions (e.g., "north", "south") to location IDs.
         - items: A list of items currently present in the location.
         - visited: Whether this location has been visited by the player.
@@ -41,6 +40,13 @@ class Location:
         - available_commands.keys() contain only valid directions: "north", "south", "east", "west"
 
     """
+    id_num: int
+    _name: str
+    brief_description: str
+    long_description: str
+    available_commands: dict
+    items: list
+    visited: bool
 
     # This is just a suggested starter class for Location.
     # You may change/add parameters and the data available for each Location object as you see fit.
@@ -48,20 +54,23 @@ class Location:
     # The only thing you must NOT change is the name of this class: Location.
     # All locations in your game MUST be represented as an instance of this class.
 
-    def __init__(self, location_id, name, brief_description, long_description, available_commands, items,
-                 visited=False) -> None:
+    def __init__(self, strl: list, available_commands: dict, items: list) -> None:
         """Initialize a new location.
 
         # TODO Add more details here about the initialization if needed
         """
 
-        self.id_num = location_id
-        self.name = name
-        self.brief_description = brief_description
-        self.long_description = long_description
+        self.id_num = strl[0]
+        self._name = strl[1]
+        self.brief_description = strl[2]
+        self.long_description = strl[3]
         self.available_commands = available_commands
         self.items = items
-        self.visited = visited
+        self.visited = False
+
+    def get_name(self) -> str:
+        """return name"""
+        return self._name
 
 
 @dataclass
@@ -102,11 +111,11 @@ class Item:
 # etc.
 
 if __name__ == "__main__":
-    pass
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
     import python_ta
+
     python_ta.check_all(config={
         'max-line-length': 120,
         'disable': ['R1705', 'E9998', 'E9999']
