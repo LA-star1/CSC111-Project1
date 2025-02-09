@@ -6,99 +6,309 @@
 \usepackage[margin=0.75in]{geometry}
 
 \title{CSC111 Winter 2025 Project 1}
-\author{TODO: FILL IN YOUR NAME(S) HERE}
+\author{Your Name Here}
 \date{\today}
 
 \begin{document}
 \maketitle
 
 \section*{Running the game}
-We should be able to run your game by simply running \texttt{adventure.py}. If you have any other requirements (e.g., installing certain modules), describe them here. Otherwise, skip this section.
+To run the game, simply execute the following command in a terminal:
+\begin{verbatim}
+python adventure.py
+\end{verbatim}
+Ensure that the file \texttt{game\_data.json} (containing all locations and item data) is located in the same directory as \texttt{adventure.py}. No additional libraries are required beyond Python’s standard modules (e.g., \texttt{json}, \texttt{dataclasses}).
 
 \section*{Game Map}
-Example game map below (edit it to show your actual game map):
-
+The entire game is set on a university campus with several interconnected areas. The following grid summarizes the five main regions by their representative location IDs. Note that sub-locations (e.g., lobbies, elevators, classrooms) are embedded within these regions.
 \begin{verbatim}
-  1  2  3
- -1  4 -1
- -1  5 -1
+   1     2     3     4     5
+(Residence, Queens Park, Robarts Library, 
+ Bahen Centre, Starbucks)
 \end{verbatim}
-
-Starting location is: 1
+\textbf{Starting location:} \texttt{1203} (Your Dorm on the second floor). From here, players can traverse through the residence, visit campus landmarks, and eventually return to their dorm with all required items.
 
 \section*{Game solution}
-List of commands:
-
-\section*{Lose condition(s)}
-Description of how to lose the game:
-
-List of commands:
-
-Which parts of your code are involved in this functionality:
-
-% Copy-paste the above if you have multiple lose conditions and describe each possible way to lose the game
-
-\section*{Inventory}
+To win the game, the player must collect all four required items (t-card, laptop charger, laptop, and usb drive) and return to their dorm (location \texttt{1203}). Below is the chronological command sequence that achieves this goal:
 
 \begin{enumerate}
-\item All location IDs that involve items in the game:
-
-\item Item data:
-\begin{enumerate}
-    \item For Item 1:
-    \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
-    \end{itemize}
-        \item For Item 2:
-    \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
-    \end{itemize}
-        \item For Item 3:
-    \begin{itemize}
-    \item Item name:
-    \item Item start location ID:
-    \item Item target location ID:
-    \end{itemize}
-    % Copy-paste the above if you have more items, to list ALL items
+    \item \texttt{pick up backpack} \quad (at 1203, Your Dorm; increases inventory capacity)
+    \item \texttt{go west} \quad (from 1203 to 1202, Hallway)
+    \item \texttt{go west} \quad (from 1202 to 1201, Elevator on the second floor)
+    \item \texttt{go down} \quad (from 1201 to 1102, Elevator on the first floor)
+    \item \texttt{go north} \quad (from 1102 to 1101, Lobby)
+    \item \texttt{go west} \quad (from 1101 to 1103, Front Desk)
+    \item \texttt{pick up t-card} \quad (at 1103, Front Desk)
+    \item \texttt{go east} \quad (from 1103 to 1101, Lobby)
+    \item \texttt{go north} \quad (from 1101 to 1, Residence)
+    \item \texttt{go north} \quad (from 1 to 2, Queens Park)
+    \item \texttt{go west} \quad (from 2 to 4, Bahen Centre for Information Technology)
+    \item \texttt{go west} \quad (from 4 to 4101, Bahen First Floor Hallway)
+    \item \texttt{go west} \quad (from 4101 to 4103, Bahen First Floor Stairway)
+    \item \texttt{go up} \quad (from 4103 to 4201, Bahen Second Floor Stairway)
+    \item \texttt{go west} \quad (from 4201 to 4205, Bahen Second Floor Hallway)
+    \item \texttt{go south} \quad (from 4205 to 4202, Bahen Study Circle)
+    \item \texttt{go north} \quad (from 4202 to 4205, Bahen Second Floor Hallway)
+    \item \texttt{go east} \quad (from 4205 to 4201, Bahen Second Floor Stairway)
+    \item \texttt{go down} \quad (from 4201 to 4103, Bahen First Floor Stairway)
+    \item \texttt{go east} \quad (from 4103 to 4101, Bahen First Floor Hallway)
+    \item \texttt{go north} \quad (from 4101 to CS Competition Awards Room)
+    \item \texttt{pick up computer award} 
+    \item \texttt{go south} \quad (from CS Competition Awards Room to Bahen First Floor Hallway)
+    \item \texttt{go east} \quad (from Bahen First Floor Hallway to Bahen Centre)
+    \item \texttt{go east} \quad (from Bahen Centre to Queens Park)
+    \item \texttt{go north} \quad (from Queens Park to Robarts Library)
+    \item \texttt{go north} \quad (from Robarts Library to Robarts Lobby)
+    \item \texttt{go west} \quad (from Robarts Lobby to Robarts Common)
+    \item \texttt{go east} \quad (from Robarts Common to Robarts Lobby)
+    \item \texttt{go north} \quad (from Robarts Lobby to First Floor Elevator)
+    \item \texttt{go up} \quad (from First Floor Elevator to Second Floor Elevator)
+    \item \texttt{go south} \quad (from Second Floor Elevator to Second Floor Hallway)
+    \item \texttt{go west} \quad (from Second Floor Hallway to Cafeteria)
+    \item \texttt{pick up red bull} 
+    \item \texttt{go east} \quad (from Cafeteria to Second Floor Hallway)
+    \item \texttt{go east} \quad (from Second Floor Hallway to Study Lounge)
+    \item \texttt{pick up laptop charger} \quad (at Study Lounge)
+    \item \texttt{go west} \quad (from Study Lounge to Second Floor Hallway)
+    \item \texttt{go north} \quad (from Second Floor Hallway to Second Floor Elevator)
+    \item \texttt{go up} \quad (from Second Floor Elevator to Ninth Floor Elevator)
+    \item \texttt{go south} \quad (from Ninth Floor Elevator to Ninth Floor Hallway)
+    \item \texttt{go south} \quad (from Ninth Floor Hallway to Study Rooms)
+    \item \texttt{unlock safe} \quad (at Study Rooms; enter password \texttt{12345678} to unlock the safe)
+    \item \texttt{pick up laptop} \quad (after unlocking the safe)
+    \item \texttt{go north} \quad (from Study Rooms to Ninth Floor Hallway)
+    \item \texttt{go north} \quad (from Ninth Floor Hallway to Ninth Floor Elevator)
+    \item \texttt{go down} \quad (from Ninth Floor Elevator to Second Floor Elevator)
+    \item \texttt{go down} \quad (from Second Floor Elevator to First Floor Elevator)
+    \item \texttt{go south} \quad (from First Floor Elevator to Robarts Lobby)
+    \item \texttt{go south} \quad (from Robarts Lobby to Robarts Library Entrance)
+    \item \texttt{go south} \quad (from Robarts Library Entrance to Queens Park)
+    \item \texttt{go west} \quad (from Queens Park to Bahen Centre)
+    \item \texttt{go west} \quad (from Bahen Centre to Bahen First Floor Hallway)
+    \item \texttt{go west} \quad (from Bahen First Floor Hallway to Bahen First Floor Stairway)
+    \item \texttt{go up} \quad (from Bahen First Floor Stairway to Bahen Second Floor Stairway)
+    \item \texttt{go west} \quad (from Bahen Second Floor Stairway to Bahen Second Floor Hallway)
+    \item \texttt{go south} \quad (from Bahen Second Floor Hallway to Bahen Study Circle)
+    \item \texttt{drop red bull}
+    \item \texttt{drop computer award} \quad (Earned Passcode: "csc is the best!")
+    \item \texttt{go west} \quad (from Bahen Study Circle to Bahen Computer Lab)
+    \item \texttt{unlock safe} \quad (at Bahen Computer Lab; enter password \texttt{"csc is the best!"} to unlock the safe)
+    \item \texttt{pick up usb drive} \quad (at Bahen Computer Lab)
+    \item \texttt{go east} \quad (from Bahen Computer Lab to Bahen Study Circle)
+    \item \texttt{go north} \quad (from Bahen Study Circle to Bahen Second Floor Hallway)
+    \item \texttt{go east} \quad (from Bahen Second Floor Hallway to Bahen Second Floor Stairway)
+    \item \texttt{go down} \quad (from Bahen Second Floor Stairway to Bahen First Floor Stairway)
+    \item \texttt{go east} \quad (from Bahen First Floor Stairway to Bahen First Floor Hallway)
+    \item \texttt{go east} \quad (from Bahen First Floor Hallway to Bahen Centre)
+    \item \texttt{go east} \quad (from Bahen Centre to Queens Park)
+    \item \texttt{go south} \quad (from Queens Park to Residence)
+    \item \texttt{go south} \quad (Entered Residence)
+    \item \texttt{go south} \quad (to Elevator)
+    \item \texttt{go up} \quad (to Second Floor Elevator)
+    \item \texttt{go east} \quad (to Hallway)
+    \item \texttt{go east} \quad (to Your Dorm) \quad 
 \end{enumerate}
 
-    \item Exact command(s) that should be used to pick up an item (choose any one item for this example), and the command(s) used to use/drop the item (can copy the list you assigned to \texttt{inventory\_demo} in the \texttt{project1\_simulation.py} file)
-    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{inventory} command:
+
+Once the player has collected all required items and returned to \texttt{1203} (Your Dorm), the game declares a win.
+
+\section*{Lose condition(s)}
+\textbf{Description:} The game monitors the total number of moves made by the player. If the move count reaches or exceeds 60 before the win condition is met, the game is lost (simulating a missed project deadline).
+
+\medskip
+\textbf{Example command sequence leading to a loss:}
+\begin{enumerate}
+    \item A player who repeatedly executes non-progressing commands such as \texttt{look} or unnecessary movements (e.g., alternating \texttt{go north} and \texttt{go south}) until 60 moves have been made.
+\end{enumerate}
+
+\medskip
+\textbf{Code components involved:}
+\begin{itemize}
+    \item File: \texttt{adventure.py}
+    \item Classes: \texttt{PlayerStatus} and \texttt{AdventureGame}
+    \item Method: \texttt{check\_game\_status} (which increments the move counter and checks for the 60-move threshold)
+\end{itemize}
+
+\section*{Inventory}
+\begin{enumerate}
+    \item \textbf{Locations involving items:}
+    \begin{itemize}
+        \item \texttt{1103} (Front Desk): contains \texttt{t-card}.
+        \item \texttt{1203} (Your Dorm): contains \texttt{backpack}.
+        \item \texttt{3203} (Robarts Study Lounge): contains \texttt{laptop charger}.
+        \item \texttt{3902} (Robarts Study Rooms): contains \texttt{laptop} (accessible after unlocking).
+        \item \texttt{4206} (Bahen Computer Lab): contains \texttt{usb drive} (accessible after unlocking).
+        \item \texttt{5104} (Starbucks Pickup): contains \texttt{coffee}.
+        \item \texttt{3202} (Robarts Cafeteria): contains \texttt{red bull}.
+        \item \texttt{4102} (CS Competition Awards Room): contains \texttt{computer award}.
+    \end{itemize}
+    
+    \item \textbf{Item data:}
+    \begin{enumerate}
+        \item \textbf{backpack:}
+        \begin{itemize}
+            \item Item name: \texttt{backpack}
+            \item Start location ID: \texttt{1203} (Your Dorm)
+            \item Target location ID: \texttt{1203}
+        \end{itemize}
+        \item \textbf{coffee:}
+        \begin{itemize}
+            \item Item name: \texttt{coffee}
+            \item Start location ID: \texttt{5104} (Starbucks Pickup)
+            \item Target location ID: \texttt{5104} (consumed upon pickup)
+        \end{itemize}
+        \item \textbf{t-card:}
+        \begin{itemize}
+            \item Item name: \texttt{t-card}
+            \item Start location ID: \texttt{1103} (Front Desk)
+            \item Target location ID: \texttt{1203}
+        \end{itemize}
+        \item \textbf{laptop charger:}
+        \begin{itemize}
+            \item Item name: \texttt{laptop charger}
+            \item Start location ID: \texttt{3203} (Robarts Study Lounge)
+            \item Target location ID: \texttt{1203}
+        \end{itemize}
+        \item \textbf{laptop:}
+        \begin{itemize}
+            \item Item name: \texttt{laptop}
+            \item Start location ID: \texttt{3902} (Robarts Study Rooms)
+            \item Target location ID: \texttt{1203}
+        \end{itemize}
+        \item \textbf{usb drive:}
+        \begin{itemize}
+            \item Item name: \texttt{usb drive}
+            \item Start location ID: \texttt{4206} (Bahen Computer Lab)
+            \item Target location ID: \texttt{1203}
+        \end{itemize}
+        \item \textbf{red bull:}
+        \begin{itemize}
+            \item Item name: \texttt{red bull}
+            \item Start location ID: \texttt{3202} (Robarts Cafeteria)
+            \item Target location ID: \texttt{4202} (Bahen Study Circle)
+            \item Target points: 150
+        \end{itemize}
+        \item \textbf{computer award:}
+        \begin{itemize}
+            \item Item name: \texttt{computer award}
+            \item Start location ID: \texttt{4102} (CS Competition Awards Room)
+            \item Target location ID: \texttt{4202} (Bahen Study Circle)
+            \item Target points: 150
+        \end{itemize}
+    \end{enumerate}
+    
+    \item \textbf{Commands:}
+    \begin{itemize}
+        \item To pick up an item, use: \texttt{pick up <item name>} \quad (e.g., \texttt{pick up t-card})
+        \item To deposit (or drop) an item, use: \texttt{drop <item name>}
+    \end{itemize}
+    
+    \item \textbf{Code components involved:}
+    \begin{itemize}
+        \item File: \texttt{adventure.py}
+        \item Class: \texttt{AdventureGame}
+        \item Methods: \texttt{pick\_up\_item} and \texttt{deposit\_item}
+    \end{itemize}
 \end{enumerate}
 
 \section*{Score}
 \begin{enumerate}
-
-    \item Briefly describe the way players can earn scores in your game. Include the first location in which they can increase their score, and the exact list of command(s) leading up to the score increase:
-
-
-    \item Copy the list you assigned to \texttt{scores\_demo} in the \texttt{project1\_simulation.py} file into this section of the report:
-
-
-    \item Which parts of your code (file, class, function/method) are involved in handling the \texttt{score} functionality:
+    \item \textbf{Score Mechanics:}  
+    Players earn points by picking up items and by depositing them at their correct target locations. For instance, when a player picks up a non-special item (such as the t-card or laptop charger), they receive an immediate score bonus (typically +10 points). In contrast, items like \texttt{red bull} and \texttt{computer award} yield a bonus of 150 points upon deposit.
+    
+    \item \textbf{Example Sequence Leading to a Score Increase:}
+    \begin{enumerate}
+         \item \texttt{go west} (from Your Dorm to Hallway)
+         \item \texttt{go west} (to the Elevator)
+         \item \texttt{go down} (to the Lobby)
+         \item \texttt{go west} (to Front Desk)
+         \item \texttt{pick up t-card} (gains 10 points)
+    \end{enumerate}
+    
+    \item \textbf{Code components involved:}
+    \begin{itemize}
+         \item File: \texttt{adventure.py}
+         \item Class: \texttt{AdventureGame}
+         \item Methods: \texttt{add\_score}, \texttt{pick\_up\_item}, and \texttt{deposit\_item}
+    \end{itemize}
 \end{enumerate}
 
 \section*{Enhancements}
+
 \begin{enumerate}
-    \item Describe your enhancement \#1 here
+    \item \textbf{Password Unlocking Mechanism:}
     \begin{itemize}
-        \item Brief description of what the enhancement is (if it's a puzzle, also describe what steps the player must take to solve it):
-        \item Complexity level (choose from low/medium/high):
-        \item Reasons you believe this is the complexity level (e.g., mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.)
+        \item \textbf{Description:}  
+        This enhancement comprises two distinct puzzles that unlock hidden items:
+        \begin{enumerate}
+            \item \textbf{Puzzle 1 – Robarts Study Rooms:}  
+            In Robarts Study Rooms (location \texttt{3902}), the player must obtain the password from an NPC. When interacting with characters in Robarts Common (e.g., the NPC named Jeff), the player is informed that the password to unlock the safe is \texttt{12345678}. After executing the \texttt{unlock} command and entering this password, the safe opens and the \texttt{laptop} becomes available in the room.
+            \item \textbf{Puzzle 2 – Bahen Computer Lab:}  
+            The unlocking mechanism in Bahen Computer Lab (location \texttt{4206}) is more complex. Initially, the passcode is unknown. The player must first collect two specific items: the \texttt{computer award} (obtained from the CS Competition Awards Room) and a can of \texttt{red bull} (from the Robarts Cafeteria). The player then needs to deposit both items in the Bahen Study Circle. Upon successful deposit, an NPC (Bob) reveals the passcode: \texttt{csc is the best!}. Later, when the player executes the \texttt{unlock} command at location \texttt{4206} and enters this passcode, the safe opens and the \texttt{usb drive} is made available.
+        \end{enumerate}
+        \item \textbf{Complexity Level:} High.
+        \item \textbf{Reasons:}  
+        Implementing these puzzles required modifications to the baseline game flow:
+        \begin{itemize}
+            \item For Puzzle 1, the standard \texttt{enter\_password} method was enhanced to prompt the player for input and verify the password obtained via interaction with an NPC.
+            \item For Puzzle 2, a multi-stage process was implemented. It integrates deposit functionality (requiring the player to deposit the \texttt{computer award} and \texttt{red bull}) with the unlocking mechanism. Only after these items are deposited does the game reveal the passcode, which the player must later use at Bahen Computer Lab. This required careful coordination between the \texttt{deposit\_item} method and the \texttt{enter\_password} method, as well as additional narrative logic.
+        \end{itemize}
+        \item \textbf{Relevant Code Components:}  
+        \begin{itemize}
+            \item File: \texttt{adventure.py}
+            \item Class: \texttt{AdventureGame}
+            \item Methods: \texttt{enter\_password} (handles both puzzles) and \texttt{deposit\_item} (for Puzzle 2)
+        \end{itemize}
     \end{itemize}
 
-    % Uncomment below section if you have more enhancements; copy-paste as needed
-    %\item Describe your enhancement here
-    %\begin{itemize}
-    %    \item Basic description of what the enhancement is:
-    %    \item Complexity level (low/medium/high):
-    %    \item Reasons you believe this is the complexity level (e.g., mention implementation details)
-    %\end{itemize}
-\end{enumerate}
 
+    \begin{itemize}
+    \item \textbf{Special Item Effects:}
+    \begin{itemize}
+        \item \textbf{Description:}  
+        Unique gameplay effects are triggered when certain items are picked up. For example, picking up \texttt{coffee} (from the Starbucks Pickup at location \texttt{5104}) immediately consumes the item, increases the player’s allowed moves (the printed message indicates an increase by 20 moves), and awards an additional 5 points. Similarly, picking up a \texttt{backpack} (from Your Dorm at location \texttt{1203}) not only grants 10 points but also increases the player's inventory capacity by 3 slots.
+        \item \textbf{Complexity Level:} Low.
+        \item \textbf{Reasons:}  
+        The implementation was localized to the \texttt{pick\_up\_item} method by adding conditional checks for specific item names. Since these changes did not affect the overall game flow and required only a few extra lines of code, the complexity is considered low.
+        \item \textbf{Relevant Code Components:}  
+        \begin{itemize}
+            \item File: \texttt{adventure.py}
+            \item Class: \texttt{AdventureGame}
+            \item Method: \texttt{pick\_up\_item}
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Bonus Scoring for Deposited Items:}
+    \begin{itemize}
+        \item \textbf{Description:}  
+        Additional bonus points are awarded when the player deposits certain non-required items at their designated locations. Specifically, depositing the \texttt{red bull} (from Robarts Cafeteria at location \texttt{3202}) and the \texttt{computer award} (from CS Competition Awards Room at location \texttt{4102}) at location \texttt{4202} (Bahen Study Circle) grants an extra 150 bonus points for each item.
+        \item \textbf{Complexity Level:} Low.
+        \item \textbf{Reasons:}  
+        This feature extends the baseline deposit functionality by reading the \texttt{target\_points} attribute from the item data. Since the modification was a straightforward extension of the existing code in the \texttt{deposit\_item} method, its complexity is deemed low.
+        \item \textbf{Relevant Code Components:}  
+        \begin{itemize}
+            \item File: \texttt{adventure.py}
+            \item Class: \texttt{AdventureGame}
+            \item Method: \texttt{deposit\_item}
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Enhancements Demo List:}  
+    The following list was assigned to \texttt{enhancements\_demo} in the \texttt{proj1\_simulation.py} file:
+    \begin{verbatim}
+enhancements_demo = [
+    "Password Unlocking: 
+    At location 3902, enter '12345678' to unlock and pick up the laptop.",
+    "Special Item Effects: 
+    Picking up 'coffee' increases moves by 5 and awards 5 bonus points; 
+    picking up 'backpack' increases inventory capacity by 3.",
+    "Bonus Scoring: 
+    Depositing 'red bull' and 'computer award' at 
+    location 4202 awards an extra 150 points each."
+]
+    \end{verbatim}
+    \end{itemize}
+
+\end{enumerate}
 
 \end{document}
