@@ -124,35 +124,27 @@ class AdventureGame:
 
     @staticmethod
     def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item]]:
-        """Load locations and items from a JSON file..."""
+        """Load locations and items from a JSON file with the given filename and
+        return a tuple consisting of (1) a dictionary of locations mapping each game location's ID to a Location object,
+        and (2) a list of all Item objects."""
 
         with open(filename, 'r') as f:
-            data = json.load(f)
+            data = json.load(f)  # This loads all the data from the JSON file
 
         locations = {}
-        for loc_data in data['locations']:
-            # 处理每个位置的 'items' 字段（已修复）
-            location_obj = Location(
-                strl=[
-                    loc_data['id'],
-                    loc_data['name'],
-                    loc_data['brief_description'],
-                    loc_data['long_description']
-                ],
-                available_commands=loc_data.get('available_commands', {}),
-                items=loc_data.get('items', [])  # 防御性处理
-            )
+        for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
+            strl = [loc_data['id'], loc_data['name'], loc_data['brief_description'], loc_data['long_description'], ]
+            location_obj = Location(strl, loc_data['available_commands'], loc_data['items'])
             locations[loc_data['id']] = location_obj
 
-        # 修复点：处理顶层 'items' 字段缺失
         items = []
-        for item_data in data.get('items', []):  # 使用 get() 提供默认值
+        for item_data in data['items']:
             item_obj = Item(
-                name=item_data['name'],
-                description=item_data['description'],
-                start_position=item_data['start_position'],
-                target_position=item_data['target_position'],
-                target_points=item_data['target_points']
+                item_data['name'],
+                item_data['description'],
+                item_data['start_position'],
+                item_data['target_position'],
+                item_data['target_points']
             )
             items.append(item_obj)
 
@@ -223,6 +215,7 @@ class AdventureGame:
         """Allow the player to pick up an item and update the score."""
         curr_location = self.get_location()
         print(f"You are now at: {curr_location.get_name()}")
+        # item_to_pick = self.get_location().items[0]
 
         if curr_location.items is None or not any(it.lower() == item_to_pick.lower() for it in curr_location.items):
             print(f"{item_to_pick} is not at this location.")
@@ -281,8 +274,8 @@ class AdventureGame:
             if item.name.lower() == item_to_deposit.lower() and item.target_position == curr_location.id_num:
                 self.player_status.inventory.remove(item_to_deposit)
                 self.add_score(item.target_points)
-                print(f"You deposited {item_to_deposit} at {curr_location.get_name()}. "
-                      f"Earned {item.target_points} points!")
+                print(f"You deposited {item_to_deposit} at {curr_location.get_name()}. Earned {item.target_points} "
+                      f"points!")
                 self.check_game_status()
                 if self.player_status.score >= 300:
                     print(
@@ -352,11 +345,11 @@ if __name__ == "__main__":
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })
 
     game_log = EventList()  # This is REQUIRED as one of the baseline requirements
     game = AdventureGame('game_data.json', 1203)  # load data, setting initial location ID to 1
@@ -422,6 +415,7 @@ if __name__ == "__main__":
                     game.pick_up_item(item_name)
                 else:
                     print("No item specified.")
+                # game.pick_up_item()
             elif choice == "drop":
                 item_name = input("Which item do you want to drop? ").lower().strip()
                 if item_name:
